@@ -1,13 +1,13 @@
-package com.Kenny.ppmtool;
+package com.Kenny.ppmtools;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class PpmtoolApplication {
+public class PpmtoolsApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(PpmtoolApplication.class, args);
+		SpringApplication.run(PpmtoolsApplication.class, args);
 	}
 
 }

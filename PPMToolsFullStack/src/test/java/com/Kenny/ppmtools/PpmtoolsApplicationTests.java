@@ -1,10 +1,10 @@
-package com.Kenny.ppmtool;
+package com.Kenny.ppmtools;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class PpmtoolApplicationTests {
+class PpmtoolsApplicationTests {
 
 	@Test
 	void contextLoads() {
