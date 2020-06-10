@@ -1,7 +1,6 @@
 import React from "react";
 import { Grid, withStyles, Typography, Button } from '@material-ui/core';
 import ProjectItems from "../components/ProjectItems"
-import { Link } from 'react-router-dom'
 
 const styles = theme => ({
     dashPadding: {
@@ -26,9 +25,7 @@ function Dashboard(props){
           <div className={classes.title}>Projects</div>
         </Typography>
         <Grid container justify="center">
-          <Link to="/createproject">
-            <Button variant="contained" color="primary">Create Project</Button>
-          </Link>
+          <Button variant="contained" color="primary" href="/createproject">Create Project</Button>
         </Grid>
       </Grid>
 

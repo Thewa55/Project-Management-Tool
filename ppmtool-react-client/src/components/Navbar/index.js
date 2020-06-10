@@ -1,6 +1,7 @@
 import React from "react";
 import { Box, Typography, Button, Grid } from "@material-ui/core";
 import { makeStyles, useTheme } from '@material-ui/core/styles';
+import { Link } from 'react-router-dom'
 
 
 const useStyles = makeStyles((theme) => ({
@@ -22,6 +23,10 @@ const useStyles = makeStyles((theme) => ({
         textAlign: "center",
         marginLeft: "0"
       }
+    },
+    linkStyle:{
+      textDecoration: "none",
+      color: "black"
     }
 }))
 
@@ -34,7 +39,9 @@ export default function Navbar() {
     <Box display="flex" bgcolor="grey.200" alignItems="center">
       <Grid container className={classes.gridStyle}>
         <Grid item xs={12} sm={8}>
-          <Typography className={classes.typography}><h1>Project Management Tool</h1></Typography>
+          <Link className={classes.linkStyle} to="/">
+            <Typography className={classes.typography}><h1>Project Management Tool</h1></Typography>
+          </Link>
         </Grid>
         <Grid item xs={12} sm={4} className={classes.gridStyle}>
           <Box flexGrow={1} textAlign="center" style={{fontFamily: "typeface-roboto"}}>
