@@ -17,7 +17,7 @@ const useStyles = makeStyles((theme) => ({
     },
     typography:{
       fontFamily : "Dancing Script",
-      marginLeft: "1em",
+      marginLeft: "8em",
       [theme.breakpoints.down("xs")]:{
         textAlign: "center",
         marginLeft: "0"
