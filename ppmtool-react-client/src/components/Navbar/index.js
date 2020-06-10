@@ -18,7 +18,8 @@ const useStyles = makeStyles((theme) => ({
     },
     typography:{
       fontFamily : "Dancing Script",
-      marginLeft: "8em",
+      marginLeft: "3em",
+      fontSize: "2.5em",
       [theme.breakpoints.down("xs")]:{
         textAlign: "center",
         marginLeft: "0"
@@ -40,7 +41,7 @@ export default function Navbar() {
       <Grid container className={classes.gridStyle}>
         <Grid item xs={12} sm={8}>
           <Link className={classes.linkStyle} to="/">
-            <Typography className={classes.typography}><h1>Project Management Tool</h1></Typography>
+            <Typography className={classes.typography}>Project Management Tool</Typography>
           </Link>
         </Grid>
         <Grid item xs={12} sm={4} className={classes.gridStyle}>

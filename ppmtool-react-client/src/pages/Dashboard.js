@@ -21,8 +21,8 @@ function Dashboard(props){
   return(
     <div>  
       <Grid container direction="row" justify="center" alignItems="center" className={classes.dashPadding}>
-        <Typography>
-          <div className={classes.title}>Projects</div>
+        <Typography className={classes.title}>
+          Projects
         </Typography>
         <Grid container justify="center">
           <Button variant="contained" color="primary" href="/createproject">Create Project</Button>
