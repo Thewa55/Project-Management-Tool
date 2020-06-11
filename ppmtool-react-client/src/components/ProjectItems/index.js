@@ -7,6 +7,7 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     width: '80%',
     height: '10em',
+    marginTop: '1em',
     [theme.breakpoints.down("sm")]:{
       height: '15em'
     }
@@ -33,18 +34,19 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-export default function ProjectItems() {
+export default function ProjectItems(props) {
   const classes = useStyles();
   const theme = useTheme();
 
+  console.log("This is the props" + props)
   return (
     <Card className={classes.root} elevation = {3}>
       <Grid container spacing={3}>
         <Grid item xs={12} md={9}>
           <div className={classes.details}>
             <CardContent className={classes.content}>
-              <Typography component="h5" variant="h5"> Project Name</Typography>
-              <Typography variant="subtitle1" color="textSecondary"> Project Description</Typography>
+              <Typography component="h5" variant="h5">{props.project.projectName} - ID: {props.project.projectIdentifier}</Typography>
+              <Typography variant="subtitle1" color="textSecondary">{props.project.description} </Typography>
             </CardContent>
           </div>
         </Grid>
