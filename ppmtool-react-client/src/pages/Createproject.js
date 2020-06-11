@@ -77,7 +77,7 @@ const Createproject = (props) => {
 
   async function createProject(project) {
     try {
-      const res = await axios.post("http://localhost:8080/api/project/", project)
+      await axios.post("http://localhost:8080/api/project/", project)
       history.push('/')
     } catch (err) {
       dispatch({

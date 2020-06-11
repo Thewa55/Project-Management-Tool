@@ -60,13 +60,16 @@ export default function UpdateProject(){
   async function getProject() {
     let url = window.location.pathname;
     let id = url.substring(url.lastIndexOf("/") + 1)
-    console.log(id)
+    try{
     const res = await axios.get(`http://localhost:8080/api/project/${id}/`)
     dispatch({
       type: GET_PROJECT,
       payload: res.data
     })
     setSingleProject(res.data)
+    } catch(err){
+      history.push('/')
+    }
   }
 
   useEffect(() => {
