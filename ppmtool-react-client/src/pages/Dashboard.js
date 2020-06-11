@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Grid, withStyles, Typography, Button } from '@material-ui/core';
 import ProjectItems from "../components/ProjectItems"
 import { useDispatch, useSelector } from 'react-redux'
@@ -20,7 +20,8 @@ const styles = theme => ({
 function Dashboard(props){
 
   const dispatch = useDispatch()
-  
+  const [allProjects, setProjects] = useState([])
+
   const projects = useSelector(state => ({
     projects: state.projects
   }))
@@ -31,15 +32,16 @@ function Dashboard(props){
       type: GET_PROJECTS,
       payload: res.data
     })
+    setProjects(res.data)
   }
-
-  const {classes} = props
 
   useEffect(()=>{
     getProjects()
-  })
+  }, [])
 
-  console.log(projects)
+  console.log(allProjects)
+
+  const {classes} = props
 
   return(
     <div>  
