@@ -29,6 +29,12 @@ const styles = theme => ({
     buttonStyle:{
       width: "90%",
       padding: "1em"
+    },
+    errorStyle:{
+      color: "red",
+      fontSize: "1em",
+      textAlign: "left",
+      marginLeft: "5%"
     }
 })
 
@@ -89,11 +95,11 @@ const Createproject = (props) => {
           <Typography variant="h2" className={classes.typographyStyle}>Create Project</Typography>
           <form noValidate autoComplete="off" className={classes.formStyle}>
             <TextField className={classes.textFieldStyle} label="Project Name" style={{ margin: 10 }} placeholder="Project Name" margin="normal" variant="outlined" inputRef={projectName} />
-            <div>{error.projectName}</div>
+            <div className={classes.errorStyle}>{error.projectName}</div>
             <TextField className={classes.textFieldStyle} id="outlined-full-width" label="Project ID" style={{ margin: 10 }} placeholder="Project ID" margin="normal" variant="outlined" inputRef={projectId}/>
-            <div>{error.projectIdentifier}</div>
+            <div className={classes.errorStyle}>{error.projectIdentifier}</div>
             <TextField className={classes.textFieldStyle} placeholder="MultiLine with rows: 2 and rowsMax: 4" multiline rows={2} rowsMax={4} id="outlined-full-width" label="Project Description" style={{ margin: 10 }} placeholder="Project Description" margin="normal" variant="outlined" inputRef={projectDesc} />
-            <div>{error.description}</div>
+            <div className={classes.errorStyle}>{error.description}</div>
             <TextField className={classes.textDateFieldStyle} id="outlined-full-width" label="Start Date" type="Date" style={{ margin: 15 }} placeholder="Project Name" margin="normal" variant="outlined" InputLabelProps={{ shrink: true }} inputRef={projectStart} />
             <TextField className={classes.textDateFieldStyle} id="outlined-full-width" label="End Date" type="Date" style={{ margin: 15}} placeholder="Project Name" margin="normal" variant="outlined" InputLabelProps={{ shrink: true }} inputRef={projectEnd} />
             <Button className={classes.buttonStyle} style={{ margin: 15, marginBottom: "3em"}} variant="contained" color="primary" onClick={handleSubmit}>Submit</Button>
