@@ -1,6 +1,9 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Grid, withStyles, Typography, Button } from '@material-ui/core';
 import ProjectItems from "../components/ProjectItems"
+import { useDispatch, useSelector } from 'react-redux'
+import { GET_PROJECTS } from '../actions/types'
+import axios from 'axios'
 
 const styles = theme => ({
     dashPadding: {
@@ -16,7 +19,27 @@ const styles = theme => ({
 
 function Dashboard(props){
 
+  const dispatch = useDispatch()
+  
+  const projects = useSelector(state => ({
+    projects: state.projects
+  }))
+
+  async function getProjects() {
+    const res = await axios.get("http://localhost:8080/api/project/all/")
+    dispatch({
+      type: GET_PROJECTS,
+      payload: res.data
+    })
+  }
+
   const {classes} = props
+
+  useEffect(()=>{
+    getProjects()
+  })
+
+  console.log(projects)
 
   return(
     <div>  
