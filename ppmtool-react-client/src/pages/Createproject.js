@@ -1,5 +1,9 @@
 import React, { useRef, useState } from 'react'
 import { Grid, TextField, Card, Typography, Button, withStyles } from '@material-ui/core';
+import { useDispatch } from 'react-redux'
+import axios from 'axios'
+import { GET_ERRORS } from '../actions/types'
+// import createProject from '../actions/projectActions'
 
 const styles = theme => ({
     cardStyle:{
@@ -10,7 +14,7 @@ const styles = theme => ({
       width: "90%",
     },
     textDateFieldStyle:{
-        width: "45%",
+        width: "44%",
         [theme.breakpoints.down("sm")]:{
             width: '90%'
         }
@@ -31,6 +35,7 @@ const styles = theme => ({
 const Createproject = (props) => {
 
   const {classes, theme } = props;
+  const dispatch = useDispatch()
 
   const projectName = useRef();
   const projectId = useRef();
@@ -39,14 +44,27 @@ const Createproject = (props) => {
   const projectEnd = useRef();
 
   const handleSubmit = () =>{
-    const project = {
+    const newProject = {
       projectName: projectName.current.value,
       projectIdentifier: projectId.current.value,
       description: projectDesc.current.value,
-      start_date: projectStart.current.value,
-      end_date: projectEnd.current.value
+      start_Date: projectStart.current.value,
+      end_Date: projectEnd.current.value
     }
-    console.log(project)
+    console.log(newProject)
+    createProject(newProject);
+  }
+
+  async function createProject(project) {
+    try {
+      const res = await axios.post("http://localhost:8080/api/project/", project)
+    } catch (err) {
+      dispatch({
+        type: GET_ERRORS,
+        payload: err.response.data
+      })
+      console.log(err)
+    }
   }
 
   return(
