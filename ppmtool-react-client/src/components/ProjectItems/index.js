@@ -20,10 +20,11 @@ const useStyles = makeStyles((theme) => ({
     flex: '1 0 auto',
   },
   innerGrid:{
+    marginTop: "1em"
   },
   button:{
     width: "80%",
-    marginTop: "1em",
+    textAlign: "center",
     [theme.breakpoints.down("md")]:{
         margin: ".3em"
     },
@@ -51,9 +52,9 @@ export default function ProjectItems(props) {
           </div>
         </Grid>
         <Grid item xs={12} md={3}>
-            <Grid container direction="row" justify="center" className={classes.innerGrid}>
+            <Grid container direction="row" justify="center" alignItems="center" className={classes.innerGrid}>
               <Button className={classes.button} variant="outlined">Board</Button>
-              <Button className={classes.button} variant="outlined" color="primary">Update Description</Button>
+              <Button className={classes.button} variant="outlined" href={`/updateproject/${props.project.projectIdentifier}`} color="primary">Update Info</Button>
               <Button className={classes.button} variant="outlined" color="secondary">Project</Button>
             </Grid>
         </Grid>

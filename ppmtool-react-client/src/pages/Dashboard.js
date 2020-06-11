@@ -56,7 +56,7 @@ function Dashboard(props){
 
       <hr style={{width: "80%"}}/>
       <Grid container direction="row" justify="center" alignItems="center" className={classes.dashPadding}>
-        {allProjects.map(project => (<ProjectItems project={project} />))}
+        {allProjects.map(project => (<ProjectItems key={project.id} project={project} />))}
       </Grid>
     </div>
   )
