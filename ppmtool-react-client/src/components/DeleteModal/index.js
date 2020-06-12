@@ -59,7 +59,6 @@ const useStyles = makeStyles((theme) => ({
 
 export default function DeleteModal(props) {
   const classes = useStyles();
-  // getModalStyle is not a pure function, we roll the style only on the first render
   const [modalStyle] = React.useState(getModalStyle);
   const [open, setOpen] = React.useState(false);
   const dispatch = useDispatch();
@@ -73,19 +72,15 @@ export default function DeleteModal(props) {
   };
 
   async function deleteProject(id) {
-    try{
-    const res = await axios.delete(`/api/project/${id}/`)
+    const res = await axios.delete(`/api/project/${id}/`);
     dispatch({
       type: DELETE_PROJECT,
       payload: res.data
-    })
-    handleClose()
-    } catch(err){
-      // history.push('/')
-    }
+    });
+    handleClose();
   }
   
-  console.log(props)
+  // console.log(props)
   const body = (
     <div style={modalStyle} className={classes.paper}>
       <Typography className={classes.titleStyle} component="h6" variant="h6">Are you sure you want to delete the project?</Typography>
