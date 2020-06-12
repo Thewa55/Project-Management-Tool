@@ -1,6 +1,8 @@
 import React from 'react';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import { Card, CardContent, Button, Typography, Grid } from '@material-ui/core';
+// import { DELETE_PROJECT } from '../../actions/types';
+import DeleteModal from '../DeleteModal'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -40,7 +42,19 @@ export default function ProjectItems(props) {
   const classes = useStyles();
   const theme = useTheme();
 
-  console.log("This is the props" + props)
+  // async function deleteProject() {
+  //   try{
+  //   const res = await axios.delete(`http://localhost:8080/api/project/${id}/`)
+  //   dispatch({
+  //     type: DELETE_PROJECT,
+  //     payload: res.data
+  //   })
+  //   // setSingleProject(res.data)
+  //   } catch(err){
+  //     history.push('/')
+  //   }
+  // }
+
   return (
     <Card className={classes.root} elevation = {3}>
       <Grid container spacing={3}>
@@ -55,8 +69,8 @@ export default function ProjectItems(props) {
         <Grid item xs={12} md={3}>
             <Grid container direction="row" justify="center" alignItems="center" className={classes.innerGrid}>
               <Button className={classes.button} variant="outlined">Board</Button>
-              <Button className={classes.button} variant="outlined" href={`/updateproject/${props.project.projectIdentifier}`} color="primary">Update Info</Button>
-              <Button className={classes.button} variant="outlined" color="secondary">Project</Button>
+              <Button className={classes.button} variant="outlined" href={`/updateproject/${props.project.projectIdentifier}`} color="primary">Update</Button>
+              <DeleteModal projectId={props.project.projectIdentifier}/>
             </Grid>
         </Grid>
       </Grid>

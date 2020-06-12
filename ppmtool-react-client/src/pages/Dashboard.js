@@ -37,9 +37,9 @@ function Dashboard(props){
 
   useEffect(()=>{
     getProjects()
-  }, [])
+  }, [allProjects])
 
-  console.log(allProjects)
+  // console.log(allProjects)
 
   const {classes} = props
 
