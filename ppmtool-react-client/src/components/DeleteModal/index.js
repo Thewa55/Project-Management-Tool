@@ -74,7 +74,7 @@ export default function DeleteModal(props) {
 
   async function deleteProject(id) {
     try{
-    const res = await axios.delete(`http://localhost:8080/api/project/${id}/`)
+    const res = await axios.delete(`/api/project/${id}/`)
     dispatch({
       type: DELETE_PROJECT,
       payload: res.data
@@ -91,7 +91,7 @@ export default function DeleteModal(props) {
       <Typography className={classes.titleStyle} component="h6" variant="h6">Are you sure you want to delete the project?</Typography>
       <Typography className={classes.bodyStyle}>Once deleted, it will be gone forever</Typography>
       <Grid container direction="row" justify="center" alignItems="center" spacing={2}>
-        <Button variant="outlined" color="secondary" className={classes.buttonStyle} onClick={() => deleteProject(props.projectId)}>Confirm</Button>
+        <Button variant="outlined" color="primary" className={classes.buttonStyle} onClick={() => deleteProject(props.projectId)}>Confirm</Button>
         <Button variant="outlined" color="secondary" className={classes.buttonStyle} onClick={handleClose}>Cancel</Button>
       </Grid>
     </div>

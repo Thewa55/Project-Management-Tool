@@ -27,7 +27,7 @@ function Dashboard(props){
   }))
 
   async function getProjects() {
-    const res = await axios.get("http://localhost:8080/api/project/all/")
+    const res = await axios.get("/api/project/all/")
     dispatch({
       type: GET_PROJECTS,
       payload: res.data

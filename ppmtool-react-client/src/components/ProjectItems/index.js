@@ -1,7 +1,6 @@
 import React from 'react';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import { Card, CardContent, Button, Typography, Grid } from '@material-ui/core';
-// import { DELETE_PROJECT } from '../../actions/types';
 import DeleteModal from '../DeleteModal'
 
 const useStyles = makeStyles((theme) => ({
@@ -41,19 +40,6 @@ const useStyles = makeStyles((theme) => ({
 export default function ProjectItems(props) {
   const classes = useStyles();
   const theme = useTheme();
-
-  // async function deleteProject() {
-  //   try{
-  //   const res = await axios.delete(`http://localhost:8080/api/project/${id}/`)
-  //   dispatch({
-  //     type: DELETE_PROJECT,
-  //     payload: res.data
-  //   })
-  //   // setSingleProject(res.data)
-  //   } catch(err){
-  //     history.push('/')
-  //   }
-  // }
 
   return (
     <Card className={classes.root} elevation = {3}>

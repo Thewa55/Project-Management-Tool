@@ -63,7 +63,7 @@ export default function UpdateProject(){
     let url = window.location.pathname;
     let id = url.substring(url.lastIndexOf("/") + 1)
     try{
-    const res = await axios.get(`http://localhost:8080/api/project/${id}/`)
+    const res = await axios.get(`/api/project/${id}/`)
     dispatch({
       type: GET_PROJECT,
       payload: res.data
@@ -76,7 +76,7 @@ export default function UpdateProject(){
 
   async function updateProject(project) {
     try {
-      await axios.post("http://localhost:8080/api/project/", project)
+      await axios.post("/api/project/", project)
       history.push('/')
       dispatch({
         type: GET_ERRORS,
