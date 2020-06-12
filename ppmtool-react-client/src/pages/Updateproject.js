@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Grid, TextField, Card, Typography, Button, withStyles } from '@material-ui/core';
 import { useDispatch, useSelector } from 'react-redux';
-import { GET_PROJECT } from '../actions/types';
+import { GET_PROJECT, GET_ERRORS } from '../actions/types';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import { useHistory } from 'react-router-dom'
 import axios from 'axios';
@@ -47,6 +47,7 @@ export default function UpdateProject(){
   const [singleProject, setSingleProject] = useState({})
   const dispatch = useDispatch()
   const history = useHistory()
+  const id = useRef()
   const projectName = useRef();
   const projectId = useRef();
   const projectDesc = useRef();
@@ -72,16 +73,42 @@ export default function UpdateProject(){
     }
   }
 
+  async function updateProject(project) {
+    try {
+      await axios.post("http://localhost:8080/api/project/", project)
+      history.push('/')
+    } catch (err) {
+      dispatch({
+        type: GET_ERRORS,
+        payload: err.response.data
+      })
+    }
+  }
+
+  const handleSubmit = () =>{
+    const newProject = {
+      id: id.current.value,
+      projectName: projectName.current.value,
+      projectIdentifier: projectId.current.value,
+      description: projectDesc.current.value,
+      start_Date: projectStart.current.value,
+      end_Date: projectEnd.current.value
+    }
+    console.log(newProject)
+    updateProject(newProject);
+  }
+
   useEffect(() => {
     getProject()
   }, [])
+  console.log(singleProject)
   
   return(
     <Grid container direction="column" justify="flex-start" alignItems="center" spacing={1}>
     <Card className={classes.cardStyle}>
       <Typography variant="h2" className={classes.typographyStyle}>Update Project</Typography>
       <form noValidate autoComplete="off" className={classes.formStyle}>
-
+        <TextField style={{visibility: "hidden"}} inputRef={id} value={singleProject.id}></TextField>
         <TextField className={classes.textFieldStyle} label="Project Name" style={{ margin: 10 }} placeholder="Project Name" value={singleProject.projectName } margin="normal" variant="outlined" inputRef={projectName} InputLabelProps={{ shrink: true }} onChange={e => setSingleProject({projectName: e.target.value})}/>   
 
         <TextField className={classes.textFieldStyle} id="outlined-full-width" label="Project ID" style={{ margin: 10 }} placeholder="Project ID" margin="normal" variant="outlined" inputRef={projectId} InputLabelProps={{ shrink: true }} disabled value={singleProject.projectIdentifier} />
@@ -92,7 +119,7 @@ export default function UpdateProject(){
 
         <TextField className={classes.textDateFieldStyle} id="outlined-full-width" label="End Date" type="Date" style={{ margin: 15}} placeholder="Project Name" margin="normal" variant="outlined" InputLabelProps={{ shrink: true }} inputRef={projectEnd} value={singleProject.end_Date} onChange={e => setSingleProject({end_Date: e.target.value})}/>
 
-        <Button className={classes.buttonStyle} style={{ margin: 15, marginBottom: "3em"}} variant="contained" color="primary">Submit</Button>
+        <Button className={classes.buttonStyle} style={{ margin: 15, marginBottom: "3em"}} variant="contained" color="primary" onClick={handleSubmit}>Submit</Button>
       </form>
     </Card>
   </Grid>
