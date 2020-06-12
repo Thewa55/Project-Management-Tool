@@ -1,6 +1,8 @@
 package com.Kenny.ppmtools.domain;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import java.util.Date;
@@ -13,7 +15,7 @@ public class ProjectTask {
     private Long Id;
     @Column(updatable = false)
     private String projectSequence;
-    @NotBlank
+    @NotBlank(message = "Please include a summary")
     private String summary;
     private String acceptanceCriteria;
     private String status;
@@ -23,6 +25,11 @@ public class ProjectTask {
     private Date dueDate;
     private Date created_At;
     private Date updated_At;
+
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REFRESH)
+    @JoinColumn(name="backlog_id", updatable = false, nullable = false)
+    @JsonIgnore
+    private Backlog backlog;
 
     public ProjectTask(){}
 
@@ -113,6 +120,14 @@ public class ProjectTask {
 
     protected void onUpdate(){
         this.updated_At = new Date();
+    }
+
+    public Backlog getBacklog() {
+        return backlog;
+    }
+
+    public void setBacklog(Backlog backlog) {
+        this.backlog = backlog;
     }
 
     @Override
