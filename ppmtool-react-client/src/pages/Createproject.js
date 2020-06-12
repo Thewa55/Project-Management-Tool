@@ -78,6 +78,10 @@ const Createproject = (props) => {
   async function createProject(project) {
     try {
       await axios.post("http://localhost:8080/api/project/", project)
+      dispatch({
+        type: GET_ERRORS,
+        payload: {}
+      })
       history.push('/')
     } catch (err) {
       dispatch({

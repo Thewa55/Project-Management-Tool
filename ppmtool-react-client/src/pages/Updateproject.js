@@ -53,6 +53,7 @@ export default function UpdateProject(){
   const projectDesc = useRef();
   const projectStart = useRef();
   const projectEnd = useRef();
+  const [error, setError] = useState({})
 
   const project = useSelector(state => ({
     project: state.projects
@@ -77,11 +78,16 @@ export default function UpdateProject(){
     try {
       await axios.post("http://localhost:8080/api/project/", project)
       history.push('/')
+      dispatch({
+        type: GET_ERRORS,
+        payload: {}
+      })
     } catch (err) {
       dispatch({
         type: GET_ERRORS,
         payload: err.response.data
       })
+      setError(err.response.data)
     }
   }
 
@@ -100,7 +106,7 @@ export default function UpdateProject(){
 
   useEffect(() => {
     getProject()
-  }, [])
+  }, [error])
   console.log(singleProject)
   
   return(
@@ -110,10 +116,14 @@ export default function UpdateProject(){
       <form noValidate autoComplete="off" className={classes.formStyle}>
         <TextField style={{visibility: "hidden"}} inputRef={id} value={singleProject.id}></TextField>
         <TextField className={classes.textFieldStyle} label="Project Name" style={{ margin: 10 }} placeholder="Project Name" value={singleProject.projectName } margin="normal" variant="outlined" inputRef={projectName} InputLabelProps={{ shrink: true }} onChange={e => setSingleProject({projectName: e.target.value})}/>   
+        
+        <div className={classes.errorStyle}>{error.projectName}</div>
 
         <TextField className={classes.textFieldStyle} id="outlined-full-width" label="Project ID" style={{ margin: 10 }} placeholder="Project ID" margin="normal" variant="outlined" inputRef={projectId} InputLabelProps={{ shrink: true }} disabled value={singleProject.projectIdentifier} />
-
+        
         <TextField className={classes.textFieldStyle} placeholder="MultiLine with rows: 2 and rowsMax: 4" multiline rows={2} rowsMax={4} id="outlined-full-width" label="Project Description" style={{ margin: 10 }} placeholder="Project Description" margin="normal" variant="outlined" inputRef={projectDesc} InputLabelProps={{ shrink: true }} value={singleProject.description} onChange={e => setSingleProject({description: e.target.value})}/>
+
+        <div className={classes.errorStyle}>{error.description}</div>
 
         <TextField className={classes.textDateFieldStyle} id="outlined-full-width" label="Start Date" type="Date" style={{ margin: 15 }} placeholder="Project Name" margin="normal" variant="outlined" InputLabelProps={{ shrink: true }} inputRef={projectStart} value={singleProject.start_Date} onChange={e => setSingleProject({start_Date: e.target.value})} />
 
