@@ -21,6 +21,36 @@ const useStyles = makeStyles((theme) => ({
   paper:{
     margin: "1em",
     width: "80%"
+  },
+  todoHeader: {
+    margin: "1em",
+    width: "80%",
+    marginTop: "1em",
+    fontSize: "2em",
+    padding: ".5em",
+    textAlign: "center",
+    backgroundColor: "grey",
+    color: "white"
+  },
+  progressHeader: {
+    margin: "1em",
+    width: "80%",
+    marginTop: "1em",
+    fontSize: "2em",
+    padding: ".5em",
+    textAlign: "center",
+    backgroundColor: "dodgerblue",
+    color: "white"
+  },
+  completedHeader: {
+    margin: "1em",
+    width: "80%",
+    marginTop: "1em",
+    fontSize: "2em",
+    padding: ".5em",
+    textAlign: "center",
+    backgroundColor: "lightgreen",
+    color: "white"
   }
 }));
 
@@ -34,7 +64,7 @@ export default function Projectboard() {
   function Todo() {
     return (
       <React.Fragment>
-          <Paper className={classes.paper}>To Do</Paper>
+          <Paper className={classes.todoHeader} elevation={3}>To Do</Paper>
           <Paper className={classes.paper}>item2</Paper>
           <Paper className={classes.paper}>item3</Paper>
       </React.Fragment>
@@ -44,7 +74,7 @@ export default function Projectboard() {
   function InProgress() {
     return (
       <React.Fragment>
-          <Paper className={classes.paper}>In Progress</Paper>
+          <Paper className={classes.progressHeader} elevation={3}>In Progress</Paper>
 
           <Paper className={classes.paper}>item2</Paper>
 
@@ -59,7 +89,7 @@ export default function Projectboard() {
   function Complete() {
     return (
       <React.Fragment>
-          <Paper className={classes.paper}>Complete</Paper>
+          <Paper className={classes.completedHeader} elevation={3}>Completed</Paper>
 
           <Paper className={classes.paper}>item2</Paper>
 
