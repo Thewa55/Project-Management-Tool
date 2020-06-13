@@ -20,13 +20,13 @@ public class ProjectTask {
     private String acceptanceCriteria;
     private String status;
     private Integer priority;
-    @Column(updatable = false)
+    @Column(updatable = false, unique = true)
     private String projectIdentifier;
     private Date dueDate;
     private Date created_At;
     private Date updated_At;
 
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REFRESH)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name="backlog_id", updatable = false, nullable = false)
     @JsonIgnore
     private Backlog backlog;
