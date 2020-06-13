@@ -54,7 +54,7 @@ export default function ProjectItems(props) {
         </Grid>
         <Grid item xs={12} md={3}>
             <Grid container direction="row" justify="center" alignItems="center" className={classes.innerGrid}>
-              <Button className={classes.button} variant="outlined">Board</Button>
+              <Button className={classes.button} variant="outlined" href={`/projectboard/${props.project.projectIdentifier}`}>Board </Button>
               <Button className={classes.button} variant="outlined" href={`/updateproject/${props.project.projectIdentifier}`} color="primary">Update</Button>
               <DeleteModal projectId={props.project.projectIdentifier}/>
             </Grid>
