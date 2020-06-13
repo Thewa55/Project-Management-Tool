@@ -1,5 +1,5 @@
 import React from 'react';
-import { Grid, withStyles, Typography, Button,Paper } from '@material-ui/core';
+import { Grid, withStyles, Typography, Button, Paper, } from '@material-ui/core';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
@@ -10,47 +10,41 @@ const useStyles = makeStyles((theme) => ({
     marginTop: theme.spacing(3)
   },
   title: {
-    fontSize: "5em",
+    fontSize: "4em",
     [theme.breakpoints.down("sm")]:{
-      fontSize: "3em"
+      fontSize: "2em",
+      textAlign: "center"
     }
   },
   outerPaper:{
     width: "90%",
+    paddingBottom: "2em",
+    marginTop: "1em"
   },
   paper:{
     margin: "1em",
-    width: "80%"
+    width: "80%",
+    paddingBottom: "2em"
   },
-  todoHeader: {
+  header: {
     margin: "1em",
     width: "80%",
     marginTop: "1em",
     fontSize: "2em",
     padding: ".5em",
     textAlign: "center",
-    backgroundColor: "grey",
-    color: "white"
+    color: "white",
+    [theme.breakpoints.down("sm")]:{
+        fontSize: "1.5em",
+        padding: ".5em"
+    }
   },
-  progressHeader: {
-    margin: "1em",
-    width: "80%",
-    marginTop: "1em",
-    fontSize: "2em",
-    padding: ".5em",
-    textAlign: "center",
-    backgroundColor: "dodgerblue",
-    color: "white"
-  },
-  completedHeader: {
-    margin: "1em",
-    width: "80%",
-    marginTop: "1em",
-    fontSize: "2em",
-    padding: ".5em",
-    textAlign: "center",
-    backgroundColor: "lightgreen",
-    color: "white"
+  buttonStyle: {
+    padding: "1em",
+    [theme.breakpoints.down("sm")]:{
+      marginTop: ".5em",
+      padding: ".5em"
+    }
   }
 }));
 
@@ -60,11 +54,13 @@ export default function Projectboard() {
   const classes = useStyles();
   const theme = useTheme();
 
+  let url = window.location.pathname;
+  let id = url.substring(url.lastIndexOf("/") + 1)
 
   function Todo() {
     return (
       <React.Fragment>
-          <Paper className={classes.todoHeader} elevation={3}>To Do</Paper>
+          <Paper className={classes.header} style={{backgroundColor: 'grey'}} elevation={3}>To Do</Paper>
           <Paper className={classes.paper}>item2</Paper>
           <Paper className={classes.paper}>item3</Paper>
       </React.Fragment>
@@ -74,7 +70,7 @@ export default function Projectboard() {
   function InProgress() {
     return (
       <React.Fragment>
-          <Paper className={classes.progressHeader} elevation={3}>In Progress</Paper>
+          <Paper className={classes.header} style={{backgroundColor: 'dodgerblue'}} elevation={3}>In Progress</Paper>
 
           <Paper className={classes.paper}>item2</Paper>
 
@@ -89,7 +85,7 @@ export default function Projectboard() {
   function Complete() {
     return (
       <React.Fragment>
-          <Paper className={classes.completedHeader} elevation={3}>Completed</Paper>
+          <Paper className={classes.header} style={{backgroundColor: 'lightgreen'}} elevation={3}>Completed</Paper>
 
           <Paper className={classes.paper}>item2</Paper>
 
@@ -105,8 +101,11 @@ export default function Projectboard() {
     <div className={classes.root}>
       <Grid container direction="row" justify="center" alignItems="center" className={classes.boardStyling}>
         <Typography className={classes.title}>
-          Project Board
+            {id} Project Board
         </Typography>
+        <Grid container justify="center">
+          <Button className={classes.buttonStyle} variant="contained" color="primary" href={`/createtask/${id}`}>Create Project Task</Button>
+        </Grid>
         <Paper className={classes.outerPaper}>
           <Grid container direction="row" justify="center" spacing={1} >
             <Grid container md={4}>
