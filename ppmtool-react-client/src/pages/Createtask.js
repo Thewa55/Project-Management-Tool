@@ -52,12 +52,12 @@ const useStyles = makeStyles((theme) => ({
 
 const status = [
   {
-    value: '',
+    value: 'To Do',
     label: 'Select Status',
   },
   {
-    value: 'To do',
-    label: 'To do',
+    value: 'To Do',
+    label: 'To Do',
   },
   {
     value: 'In Progress',
@@ -71,19 +71,19 @@ const status = [
 
 const priority = [
     {
-      value: '0',
+      value: 3,
       label: 'Select Priority',
     },
     {
-      value: '1',
+      value: 1,
       label: 'High',
     },
     {
-      value: '2',
+      value: 2,
       label: 'Medium',
     },
     {
-      value: '3',
+      value: 3,
       label: 'Low',
     }
   ];
@@ -97,20 +97,15 @@ export default function Createtask(){
   const taskSummary = useRef();
   const taskCriteria = useRef();
   const dueDate = useRef();
-  const [taskPriority, setTaskPriority] = useState()
-  const [taskStatus, setTaskStatus] = useState()
+  const [taskPriority, setTaskPriority] = useState(3)
+  const [taskStatus, setTaskStatus] = useState("To Do")
   const [error, setError] = useState({});
 
-  async function updateProject() {
-    let url = window.location.pathname;
-    let id = url.substring(url.lastIndexOf("/") + 1)
+  async function createTask(projecttask) {
+    let id = getID()
     // try {
-    //   await axios.post("/api/project/", project)
+      await axios.post(`/api/backlog/${id}`, projecttask)
       history.push(`/projectboard/${id}`)
-    //   dispatch({
-    //     type: GET_ERRORS,
-    //     payload: {}
-    //   })
     // } catch (err) {
     //   dispatch({
     //     type: GET_ERRORS,
@@ -121,16 +116,15 @@ export default function Createtask(){
   }
 
   const handleSubmit = () =>{
-    // const newProject = {
-    //   id: id.current.value,
-    //   projectName: projectName.current.value,
-    //   projectIdentifier: projectId.current.value,
-    //   description: projectDesc.current.value,
-    //   start_Date: projectStart.current.value,
-    //   end_Date: projectEnd.current.value
-    // }
-    // console.log(newProject)
-    updateProject();
+    const newTask = {
+      summary: taskSummary.current.value,
+      acceptanceCriteria: taskCriteria.current.value,
+      dueDate: dueDate.current.value,
+      status: taskStatus,
+      priority: taskPriority
+    }
+    console.log(newTask)
+    createTask(newTask)
   }
 
   const handleChange = (event) => {
@@ -141,10 +135,15 @@ export default function Createtask(){
     setTaskStatus(event.target.value)
   }
 
-  const handleCancel =(event) =>{
+  const getID = () => {
     let url = window.location.pathname;
-    let id = url.substring(url.lastIndexOf("/") + 1)
-    history.push(`/projectboard/${id}`)
+    let id = url.substring(url.lastIndexOf("/") + 1);
+    return id;
+  }
+
+  const handleCancel =(event) =>{
+    let id = getID();
+    history.push(`/projectboard/${id}`);
   }
   console.log(taskPriority)
   console.log(taskStatus)
@@ -169,15 +168,15 @@ export default function Createtask(){
         <TextField className={classes.textDateFieldStyle} id="outlined-full-width" label="End Date" type="Date" style={{ margin: 15}} placeholder="Project Name" margin="normal" variant="outlined" InputLabelProps={{ shrink: true }} /> */}
 
         <TextField select label="Priority" className={classes.textDateFieldStyle} onChange={handleChange} style={{ margin: 15}} SelectProps={{ native: true }} InputLabelProps={{ shrink: true }} helperText="Please select task priority">
-          {priority.map((option) => (
-            <option key={option.value} value={option.value}>
+          {priority.map((option, index) => (
+            <option key={index} value={option.value}>
               {option.label}
             </option>
           ))}
         </TextField>
         <TextField select label="Status" className={classes.textDateFieldStyle} onChange={handleStatus} SelectProps={{ native: true }} style={{ margin: 15}} InputLabelProps={{ shrink: true }} helperText="Please select task status">
-          {status.map((option) => (
-            <option key={option.value} value={option.value}>
+          {status.map((option, index) => (
+            <option key={index} value={option.value}>
               {option.label}
             </option>
           ))}
