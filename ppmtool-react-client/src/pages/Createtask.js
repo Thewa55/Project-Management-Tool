@@ -1,7 +1,6 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { Grid, TextField, Card, Typography, Button, withStyles } from '@material-ui/core';
-import { useDispatch, useSelector } from 'react-redux';
-// import { GET_PROJECT, GET_ERRORS } from '../actions/types';
+import React, { useState, useRef } from 'react';
+import { Grid, TextField, Card, Typography, Button } from '@material-ui/core';
+import { useDispatch} from 'react-redux';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import { useHistory } from 'react-router-dom'
 import axios from 'axios';

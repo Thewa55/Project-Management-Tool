@@ -1,8 +1,10 @@
 import React, { useState, useEffect} from 'react';
-import { Grid, Typography, Button, Paper, Card, CardContent, CardActionArea, CardActions, CardMedia } from '@material-ui/core';
+import { Grid, Typography, Button, Paper } from '@material-ui/core';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import axios from 'axios';
 import TaskCard from '../components/TaskCard'
+import { useDispatch } from 'react-redux'
+import { GET_ERRORS } from '../actions/types'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -25,11 +27,10 @@ const useStyles = makeStyles((theme) => ({
   },
   paper:{
     margin: "1em",
-    width: "80%",
+    width: "90%",
     paddingBottom: "2em"
   },
   header: {
-    margin: "1em",
     width: "85%",
     marginTop: "1em",
     fontSize: "2em",
@@ -53,20 +54,33 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Projectboard() {
 
-  
   const classes = useStyles();
   const theme = useTheme();
   const [projectTasks, setProjectTasks] = useState({})
+  const dispatch = useDispatch()
+  const [error, setError] = useState()
 
   let url = window.location.pathname;
   let id = url.substring(url.lastIndexOf("/") + 1)
 
   async function getTasks() {
-    let id = getID()
-    const res = await axios.get(`/api/backlog/${id}`)
-    setProjectTasks(res.data)
+    try{
+      let id = getID()
+      const res = await axios.get(`/api/backlog/${id}`)
+      setProjectTasks(res.data)
+      dispatch({
+        type: GET_ERRORS,
+        payload: {}
+      })
+    } catch(err){
+      dispatch({
+        type: GET_ERRORS,
+        payload: err.response.data
+      })
+      setError(err.response.data)
+    }
   }
-
+  
   function getID(){
     let url = window.location.pathname;
     let id = url.substring(url.lastIndexOf("/") + 1) 
@@ -77,8 +91,10 @@ export default function Projectboard() {
     getTasks()
   }, [])
 
+  console.log(error)
   return(
     <div className={classes.root}>
+      { !error ? (
       <Grid container direction="row" justify="center" alignItems="center" className={classes.boardStyling}>
         <Typography className={classes.title}>
             {id} Project Board
@@ -88,14 +104,13 @@ export default function Projectboard() {
         </Grid>
         <Paper className={classes.outerPaper}>
           <Grid container direction="row" justify="center">
-            <Grid item md={4}>
-              <Grid container item direction="column" justify="flex-start" alignItems="center" md={12}>  
+              <Grid container item direction="column" justify="flex-start" alignItems="center" lg ={4} md={12}>  
                 <Paper className={classes.header} style={{backgroundColor: 'grey'}} elevation={3}>To Do</Paper>
                 {projectTasks.length !== undefined ? (
                   <>
-                    {projectTasks.map( projectTask  => 
+                    {projectTasks.map( (projectTask, index)  => 
                     projectTask.status === "To Do" ? 
-                      (<TaskCard projectTask={projectTask} />)
+                      (<TaskCard key={index} projectId={id} projectTask={projectTask} />)
                     :
                       (<> </>)
                     )}
@@ -103,15 +118,13 @@ export default function Projectboard() {
                   <>
                   </>)}
               </Grid>
-            </Grid>
-            <Grid item md={4}>
-            <Grid container item direction="column" justify="flex-start" alignItems="center" md={12}>
-              <Paper className={classes.header} style={{backgroundColor: 'dodgerblue'}} elevation={3}>In Progress</Paper>
+            <Grid container item direction="column" justify="flex-start" alignItems="center" lg={4} md={12}>
+              <Paper className={classes.header} style={{backgroundColor: '#FFB833'}} elevation={3}>In Progress</Paper>
                 {projectTasks.length !== undefined ? (
                   <>
-                    {projectTasks.map( projectTask  => 
+                    {projectTasks.map( (projectTask, index)  => 
                     projectTask.status === "In Progress" ? 
-                      (<TaskCard projectTask={projectTask} />)
+                      (<TaskCard key={index} projectId={id} projectTask={projectTask} />)
                     :
                       (<> </>)
                     )}
@@ -119,26 +132,27 @@ export default function Projectboard() {
                   <>
                   </>)}
             </Grid>
-            </Grid>
-            <Grid item md={4}>
-            <Grid container item direction="column" justify="flex-start" alignItems="center" md={12}>
-              <Paper className={classes.header} style={{backgroundColor: 'lightgreen'}} elevation={3}>Completed</Paper>
+            <Grid container item direction="column" justify="flex-start" alignItems="center" lg={4} md={12}>
+              <Paper className={classes.header} style={{backgroundColor: '#a38068'}} elevation={3}>Completed</Paper>
               {projectTasks.length !== undefined ? (
                   <>
-                    {projectTasks.map( projectTask  => 
+                    {projectTasks.map( (projectTask, index)  => 
                     projectTask.status === "Completed" ? 
-                      (<TaskCard projectTask={projectTask} />)
+                      (<TaskCard key={index} projectId={id} projectTask={projectTask} />)
                     :
                       (<> </>)
                     )}
                   </> ): (
                   <>
                   </>)}
-            </Grid>
             </Grid>
           </Grid>
         </Paper>
-      </Grid>
+      </Grid>) : (
+        <Paper style={{textAlign: "center", padding: "1em", margin: "1em"}}>
+         <h1>{error.projectIdentifier}</h1>
+        </Paper>
+      )}
     </div>
   )
 }

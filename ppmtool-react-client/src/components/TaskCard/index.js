@@ -1,11 +1,23 @@
 import React from 'react'
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import { Grid, Typography, Button, Card, CardContent, CardActionArea, CardActions } from '@material-ui/core';
+import { Link } from 'react-router-dom'
+
 
 const useStyles = makeStyles((theme) => ({
   cardStyle: {
     margin: "1em",
-    width: "90%",
+    width: "93%",
+  },
+  cardTitle: {
+    width: "100%",
+    padding: "1em"
+  },
+  buttonStyle: {
+    fontSize: "1em"
+  },
+  linkStyle: {
+    textDecoration: "none"
   }
 }))
 
@@ -14,25 +26,25 @@ export default function TaskCard(props) {
   const classes = useStyles();
   const theme = useTheme();    
   
-  //     const [priorityColor, setColor] = useState({
-//         color: "Red",
-//         text: "High"
-//     });
-
-//     // if(props.projectTask.priority === 2){
-//     //   setColor({color: "dodgerblue", text: "Medium"});
-//     // }
-//     // if(props.projectTask.priority === 3){
-//     //     setColor({color: "#008000", text: "Low"});
-//     //   }
+  let priorityColor = { backgroundColor : "red" };
+  let text = "High"
+  
+  if(props.projectTask.priority === 2){
+    priorityColor = { backgroundColor : "dodgerblue"} ; 
+    text = "Medium"
+  }
+  if(props.projectTask.priority === 3){
+    priorityColor = { backgroundColor: "#008000"}; 
+    text = "Low"
+  }
 
   return(
     <Card className={classes.cardStyle} elevation={3}>
       <CardActionArea>
+        <Typography color="textSecondary" className={classes.cardTitle} variant="h6" gutterBottom style={priorityColor}>
+            ID: {props.projectTask.projectSequence} - Priority - {text}
+        </Typography>
         <CardContent>
-          <Typography color="textSecondary" variant="h6" gutterBottom >
-            ID: {props.projectTask.projectSequence} - Priority -
-          </Typography>
           <Typography gutterBottom variant="h5" component="h2">
             {props.projectTask.summary}
           </Typography>
@@ -42,13 +54,19 @@ export default function TaskCard(props) {
         </CardContent>
       </CardActionArea>
       <CardActions>
-        <Grid container direction="row" justify="center" alignItems="center" spacing={3}>
-          <Button size="small" color="primary">
-            View/Update
-          </Button>
-          <Button size="small" color="primary" >
-            Delete
-          </Button>
+        <Grid container direction="row" justify="center" alignItems="center" spacing={10}>
+          <Grid item>
+            <Link to={`/updatetask/${props.projectId}/${props.projectTask.projectSequence}`} className={classes.linkStyle}>
+              <Button size="small" color="primary" className={classes.buttonStyle}>
+                View/Update
+              </Button>
+            </Link>
+          </Grid>
+          <Grid item>
+            <Button size="small" color="primary"  className={classes.buttonStyle}>
+              Delete
+            </Button>
+          </Grid>
         </Grid>
       </CardActions>
     </Card>

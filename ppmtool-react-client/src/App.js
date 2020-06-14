@@ -5,6 +5,7 @@ import Createproject from "./pages/Createproject";
 import Updateproject from './pages/Updateproject';
 import Projectboard from './pages/Projectboard'
 import Createtask from './pages/Createtask'
+import Updatetask from './pages/Updatetask'
 import 'typeface-roboto';
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import { Provider } from 'react-redux';
@@ -21,6 +22,7 @@ function App() {
           <Route exact path="/updateproject/:id" component={Updateproject} />
           <Route exact path="/projectboard/:id" component={Projectboard} />
           <Route exact path="/createtask/:id" component={Createtask} />
+          <Route exact path="/updatetask/:id/:task_id" component={Updatetask} />
         </div>
       </Router>
     </Provider>

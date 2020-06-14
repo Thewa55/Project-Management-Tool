@@ -7,7 +7,8 @@ import axios from 'axios'
 
 const styles = theme => ({
     dashPadding: {
-      marginTop: theme.spacing(3)
+      // marginTop: theme.spacing(3),
+      paddingBottom: "2em"
     },
     title: {
       fontSize: "5em",
@@ -39,13 +40,11 @@ function Dashboard(props){
     getProjects()
   }, [allProjects])
 
-  // console.log(allProjects)
-
   const {classes} = props
 
   return(
     <div>  
-      <Grid container direction="row" justify="center" alignItems="center" className={classes.dashPadding}>
+      <Grid container direction="row" justify="center" alignItems="center">
         <Typography className={classes.title}>
           Projects
         </Typography>
