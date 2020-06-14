@@ -1,6 +1,7 @@
 package com.Kenny.ppmtools.domain;
 
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
@@ -22,6 +23,7 @@ public class ProjectTask {
     private Integer priority;
     @Column(updatable = false, unique = true)
     private String projectIdentifier;
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private Date dueDate;
     private Date created_At;
     private Date updated_At;

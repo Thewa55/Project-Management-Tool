@@ -40,6 +40,36 @@ const useStyles = makeStyles((theme) => ({
     }
 }))
 
+const status = [
+  {
+    value: 'To Do',
+    label: 'To Do',
+  },
+  {
+    value: 'In Progress',
+    label: 'In Progress',
+  },
+  {
+    value: 'Completed',
+    label: 'Completed',
+  }
+];
+  
+const priority = [
+  {
+    value: 1,
+    label: 'High',
+  },
+  {
+    value: 2,
+    label: 'Medium',
+  },
+  {
+    value: 3,
+    label: 'Low',
+  }
+];
+
 export default function UpdateTask(){
   
   const classes = useStyles();
@@ -47,13 +77,12 @@ export default function UpdateTask(){
   const [singleTask, setSingleTask] = useState({})
   const dispatch = useDispatch()
   const history = useHistory()
-  const id = useRef()
-  const projectName = useRef();
-  const projectId = useRef();
-  const projectDesc = useRef();
-  const projectStart = useRef();
-  const projectEnd = useRef();
+  const taskSummary = useRef();
+  const taskCriteria = useRef();
+  const dueDate = useRef();
   const [error, setError] = useState({})
+  const [taskPriority, setTaskPriority] = useState()
+  const [taskStatus, setTaskStatus] = useState()
 
 //   const project = useSelector(state => ({
 //     project: state.projects
@@ -69,6 +98,8 @@ export default function UpdateTask(){
       type: GET_PROJECT_TASK,
       payload: res.data
     })
+    setTaskPriority(res.data.priority)
+    setTaskStatus(res.data.status)
     setSingleTask(res.data)
     } catch(err){
       history.push('/')
@@ -93,44 +124,63 @@ export default function UpdateTask(){
 //   }
 
   const handleSubmit = () =>{
-    // const newProject = {
-    //   id: id.current.value,
-    //   projectName: projectName.current.value,
-    //   projectIdentifier: projectId.current.value,
-    //   description: projectDesc.current.value,
-    //   start_Date: projectStart.current.value,
-    //   end_Date: projectEnd.current.value
-    // }
-    // console.log(newProject)
-    // updateProject(newProject);
+    const updateTask = {
+        summary: taskSummary.current.value,
+        acceptanceCriteria: taskCriteria.current.value,
+        dueDate: dueDate.current.value,
+        status: taskStatus,
+        priority: taskPriority
+    }
+
+    console.log(updateTask)
+  }
+
+  const handleChange = (event) => {
+    setTaskPriority(event.target.value);
+  };
+
+  const handleStatus =(event) =>{
+    setTaskStatus(event.target.value)
   }
 
   useEffect(() => {
     getTask()
   }, [error])
-
-  console.log(singleTask)
   
+
+  console.log(taskStatus)
+  console.log("Current priority " + taskPriority)
   return(
     <Grid container direction="column" justify="flex-start" alignItems="center" spacing={1}>
     <Card className={classes.cardStyle}>
       <Typography variant="h2" className={classes.typographyStyle}>Update Project</Typography>
       <form noValidate autoComplete="off" className={classes.formStyle}>
-        {/* <TextField style={{visibility: "hidden"}} inputRef={id} value={singleProject.id}></TextField>
-        <TextField className={classes.textFieldStyle} label="Project Name" style={{ margin: 10 }} placeholder="Project Name" value={singleProject.projectName } margin="normal" variant="outlined" inputRef={projectName} InputLabelProps={{ shrink: true }} onChange={e => setSingleProject({projectName: e.target.value})}/>   
+
+        <TextField className={classes.textFieldStyle} label="Task Summary" style={{ margin: 10 }} placeholder="Task Summary" margin="normal" variant="outlined" inputRef={taskSummary} value={singleTask.summary} InputLabelProps={{ shrink: true }} onChange={e => setSingleTask({summary: e.target.value})}/>   
         
         <div className={classes.errorStyle}>{error.projectName}</div>
 
-        <TextField className={classes.textFieldStyle} id="outlined-full-width" label="Project ID" style={{ margin: 10 }} placeholder="Project ID" margin="normal" variant="outlined" inputRef={projectId} InputLabelProps={{ shrink: true }} disabled value={singleProject.projectIdentifier} />
-        
-        <TextField className={classes.textFieldStyle} placeholder="MultiLine with rows: 2 and rowsMax: 4" multiline rows={2} rowsMax={4} id="outlined-full-width" label="Project Description" style={{ margin: 10 }} placeholder="Project Description" margin="normal" variant="outlined" inputRef={projectDesc} InputLabelProps={{ shrink: true }} value={singleProject.description} onChange={e => setSingleProject({description: e.target.value})}/>
+        <TextField className={classes.textFieldStyle} multiline rows={2} rowsMax={4} id="outlined-full-width" label="Task Criteria" style={{ margin: 10 }} placeholder="Task Criteria" margin="normal" variant="outlined" InputLabelProps={{ shrink: true }} inputRef={taskCriteria} value={singleTask.acceptanceCriteria} onChange={e => setSingleTask({acceptanceCriteria: e.target.value})}/>
 
         <div className={classes.errorStyle}>{error.description}</div>
 
-        <TextField className={classes.textDateFieldStyle} id="outlined-full-width" label="Start Date" type="Date" style={{ margin: 15 }} placeholder="Project Name" margin="normal" variant="outlined" InputLabelProps={{ shrink: true }} inputRef={projectStart} value={singleProject.start_Date} onChange={e => setSingleProject({start_Date: e.target.value})} />
+        <TextField className={classes.textFieldStyle} id="outlined-full-width" label="Due Date" type="Date" style={{ margin: 15 }} placeholder="Due Date" margin="normal" variant="outlined" InputLabelProps={{ shrink: true }} inputRef={dueDate}  value={singleTask.dueDate} onChange={e => setSingleTask({dueDate: e.target.value})}/>
 
-        <TextField className={classes.textDateFieldStyle} id="outlined-full-width" label="End Date" type="Date" style={{ margin: 15}} placeholder="Project Name" margin="normal" variant="outlined" InputLabelProps={{ shrink: true }} inputRef={projectEnd} value={singleProject.end_Date} onChange={e => setSingleProject({end_Date: e.target.value})}/> */}
-
+        <TextField select label="Priority" className={classes.textDateFieldStyle} onChange={handleChange} style={{ margin: 15}} SelectProps={{ native: true }} value={singleTask.priority} InputLabelProps={{ shrink: true }} helperText="Please select task priority"> onChange={e => setTaskPriority(e.target.value)} >
+          {priority.map((option, index) => (
+            <option key={index} value={option.value}>
+              {option.label}
+            </option>
+          ))}
+        </TextField>
+        
+        <TextField select label="Status" className={classes.textDateFieldStyle} onChange={handleStatus} SelectProps={{ native: true }} style={{ margin: 15}} value={singleTask.status} InputLabelProps={{ shrink: true }} helperText="Please select task status" onChange={e => setTaskStatus(e.target.value)}>
+          {status.map((option, index) => (
+            <option key={index} value={option.value}>
+              {option.label}
+            </option>
+          ))}
+        </TextField>
         <Button className={classes.buttonStyle} style={{ margin: 15, marginBottom: "3em"}} variant="contained" color="primary" onClick={handleSubmit}>Submit</Button>
       </form>
     </Card>
