@@ -3,6 +3,7 @@ package com.Kenny.ppmtools.controllers;
 import com.Kenny.ppmtools.domain.User;
 import com.Kenny.ppmtools.services.UserService;
 import com.Kenny.ppmtools.services.ValidationService;
+import com.Kenny.ppmtools.validator.UserValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -24,9 +25,14 @@ public class UserController {
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private UserValidator userValidator;
+
     @PostMapping("/register")
     public ResponseEntity<?> registerUser(@Valid @RequestBody User user, BindingResult result){
         //validate password
+        userValidator.validate(user, result);
+
         ResponseEntity<?> errorMap = validationService.MapValidationService(result);
         if(errorMap != null ) return errorMap;
 
