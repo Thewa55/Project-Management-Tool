@@ -16,7 +16,7 @@ public class UserValidator implements Validator {
     public void validate(Object o, Errors errors) {
         User user = (User) o;
         if(user.getPassword().length() < 6){
-            errors.rejectValue("password", "Legnth", "Password must be at least 6 characters.");
+            errors.rejectValue("password", "Length", "Password must be at least 6 characters.");
         }
 
         if(!user.getPassword().equals(user.getConfirmPassword())){
