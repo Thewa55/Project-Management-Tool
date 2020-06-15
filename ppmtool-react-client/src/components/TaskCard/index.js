@@ -2,7 +2,8 @@ import React from 'react'
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import { Grid, Typography, Button, Card, CardContent, CardActionArea, CardActions } from '@material-ui/core';
 import { Link } from 'react-router-dom'
-
+import axios from 'axios';
+import DeleteTaskModal from '../DeleteTaskModal'
 
 const useStyles = makeStyles((theme) => ({
   cardStyle: {
@@ -24,7 +25,7 @@ const useStyles = makeStyles((theme) => ({
 export default function TaskCard(props) {
 
   const classes = useStyles();
-  const theme = useTheme();    
+  const theme = useTheme(); 
   
   let priorityColor = { backgroundColor : "red" };
   let text = "High"
@@ -63,9 +64,7 @@ export default function TaskCard(props) {
             </Link>
           </Grid>
           <Grid item>
-            <Button size="small" color="primary"  className={classes.buttonStyle}>
-              Delete
-            </Button>
+            < DeleteTaskModal ID={props.projectId} Sequence={props.projectTask.projectSequence}/>
           </Grid>
         </Grid>
       </CardActions>

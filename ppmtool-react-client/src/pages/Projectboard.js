@@ -89,9 +89,8 @@ export default function Projectboard() {
 
   useEffect(() => {
     getTasks()
-  }, [])
+  }, [projectTasks])
 
-  console.log(error)
   return(
     <div className={classes.root}>
       { !error ? (
