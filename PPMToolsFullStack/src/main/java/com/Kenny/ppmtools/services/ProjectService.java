@@ -1,10 +1,12 @@
 package com.Kenny.ppmtools.services;
 
 import com.Kenny.ppmtools.domain.Backlog;
+import com.Kenny.ppmtools.domain.User;
 import com.Kenny.ppmtools.exceptions.ProjectIdException;
 import com.Kenny.ppmtools.repositories.BacklogRepository;
 import com.Kenny.ppmtools.repositories.ProjectRepository;
 import com.Kenny.ppmtools.domain.Project;
+import com.Kenny.ppmtools.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,8 +19,16 @@ public class ProjectService {
     @Autowired
     private BacklogRepository backlogRepository;
 
-    public Project saveOrUpdateProject(Project project){
+    @Autowired
+    private UserRepository userRepository;
+
+    public Project saveOrUpdateProject(Project project, String username){
         try{
+
+            User user = userRepository.findByUsername(username);
+
+            project.setUser(user);
+            project.setProjectLeader(user.getUsername());
             project.setProjectIdentifier(project.getProjectIdentifier().toUpperCase());
             if(project.getId() == null) {
                 Backlog backlog = new Backlog();
