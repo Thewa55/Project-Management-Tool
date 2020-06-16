@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import { Grid, Typography, TextField, Card, Button } from '@material-ui/core';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import { useHistory } from 'react-router-dom';
@@ -12,18 +12,13 @@ const useStyles = makeStyles((theme) => ({
     textFieldStyle:{
       width: "90%",
     },
-    textDateFieldStyle:{
-        width: "44%",
-        [theme.breakpoints.down("sm")]:{
-            width: '90%'
-        }
-    },
     formStyle:{
       alignItems: "center",
       textAlign: "center"
     },
     typographyStyle:{
-      textAlign: "center"
+      textAlign: "center",
+      padding: ".5em"
     },
     buttonStyle:{
       width: "90%",
@@ -43,6 +38,7 @@ export default function Login() {
   const theme = useTheme();
   const username = useRef();
   const password = useRef();
+  const [errors, setErrors] = useState()
 
   const handleSubmit = () => {
       let newUser = {
@@ -57,9 +53,9 @@ export default function Login() {
     <>
       <Grid container direction="row" justify="center" alignItems="center" spacing={1}>
         <Card className={classes.cardStyle}>
-          <Typography variant="h2" className={classes.typographyStyle}>Create an account</Typography>
+          <Typography variant="h3" className={classes.typographyStyle}>Welcome, please log in</Typography>
           <form noValidate autoComplete="off" className={classes.formStyle}>
-            <TextField className={classes.textFieldStyle} label="Username (E-mail)" style={{ margin: 10 }} type="email" placeholder="Username (E-mail)" margin="normal" variant="outlined" inputRef={username} />
+            <TextField className={classes.textFieldStyle} label="E-mail (User Name)" style={{ margin: 10 }} type="email" placeholder="E-mail (User Name)" margin="normal" variant="outlined" inputRef={username} />
             {/* <div className={classes.errorStyle}>{error.projectName}</div> */}
             <TextField className={classes.textFieldStyle} id="outlined-full-width" label="Password" type="password" style={{ margin: 10 }} placeholder="Password" margin="normal" variant="outlined" inputRef={password}/>
             {/* <div className={classes.errorStyle}>{error.description}</div> */}

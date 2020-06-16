@@ -43,29 +43,11 @@ public class UserController {
     @Autowired
     private AuthenticationManager authenticationManager;
 
-//    @PostMapping("/login")
-//    public ResponseEntity<?> authenticUser(@Valid @RequestBody LoginRequest loginRequest, BindingResult result){
-//        ResponseEntity<?>errorMap = validationService.MapValidationService(result);
-//        if(errorMap != null) return errorMap;
-//
-//        Authentication authentication = authenticationManager.authenticate(
-//                new UsernamePasswordAuthenticationToken(
-//                        loginRequest.getUsername(),
-//                        loginRequest.getPassword()
-//                )
-//        );
-//
-//        SecurityContextHolder.getContext().setAuthentication(authentication);
-//        String jwt = TOKEN_PREFIX + tokenProvider.generateToken(authentication);
-//
-//        return ResponseEntity.ok(new JWTLoginSuccessResponse(true, jwt));
-//
-//    }
 
     @PostMapping("/login")
     public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest, BindingResult result){
-//        ResponseEntity<?> errorMap = validationService.MapValidationService(result);
-//        if(errorMap != null) return errorMap;
+        ResponseEntity<?> errorMap = validationService.MapValidationService(result);
+        if(errorMap != null) return errorMap;
 
         Authentication authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(
@@ -85,8 +67,8 @@ public class UserController {
         //validate password
         userValidator.validate(user, result);
 
-//        ResponseEntity<?> errorMap = validationService.MapValidationService(result);
-//        if(errorMap != null ) return errorMap;
+        ResponseEntity<?> errorMap = validationService.MapValidationService(result);
+        if(errorMap != null ) return errorMap;
 
         User newUser = userService.saveUser(user);
 
