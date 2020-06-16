@@ -85,9 +85,6 @@ export default function UpdateTask(){
   const [taskPriority, setTaskPriority] = useState()
   const [taskStatus, setTaskStatus] = useState()
   const [pageError, setPageError] = useState()
-//   const project = useSelector(state => ({
-//     project: state.projects
-//   }))
 
   async function getTask() {
     let url = getRoute();

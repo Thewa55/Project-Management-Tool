@@ -46,8 +46,12 @@ export default function Navbar() {
         </Grid>
         <Grid item xs={12} sm={4} className={classes.gridStyle}>
           <Box flexGrow={1} textAlign="center" style={{fontFamily: "typeface-roboto"}}>
-            <Button color="primary"><h3>Signup</h3></Button>
-            <Button color="primary"><h3>Login</h3></Button>
+            <Link to="/signup" className={classes.linkStyle}>
+              <Button color="primary"><h3>Signup</h3></Button>
+            </Link>
+            <Link to="/login" className={classes.linkStyle}>
+              <Button color="primary"><h3>Login</h3></Button>
+            </Link>
           </Box>
         </Grid>  
       </Grid>
