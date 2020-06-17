@@ -5,7 +5,8 @@ import { useHistory } from 'react-router-dom';
 import axios from 'axios';
 import jwt_decode from 'jwt-decode';
 import { useDispatch, useSelector } from 'react-redux';
-import { SET_CURRENT_USER } from '../actions/types';
+import { SET_CURRENT_USER, GET_ERRORS } from '../actions/types';
+import setJWTToken from '../utils/setJWTToken'
 
 const useStyles = makeStyles((theme) => ({
     cardStyle:{
@@ -41,7 +42,7 @@ export default function Login() {
   const theme = useTheme();
   const username = useRef();
   const password = useRef();
-  const [errors, setErrors] = useState();
+  const [error, setError] = useState();
   const dispatch = useDispatch();
   const history = useHistory();
 
@@ -64,21 +65,13 @@ export default function Login() {
         type: SET_CURRENT_USER,
         payload: decoded
       })
-      history.push("/")
+      history.push("/dashboard")
     } catch(err){
-    //   dispatch({
-    //     type: GET_ERRORS,
-    //     payload: err.response.data
-    //   })
-    //   setError(err.response.data)
-    }
-  }
-
-  const setJWTToken = (token) => {
-    if(token){
-      axios.defaults.headers.common["Authorization"] = token;
-    } else {
-      delete axios.defaults.headers.common["Authorization"];
+      dispatch({
+        type: GET_ERRORS,
+        payload: err.response.data
+      })
+      setError(err.response.data)
     }
   }
 
