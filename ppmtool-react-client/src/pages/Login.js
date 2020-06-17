@@ -38,6 +38,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Login() {
 
+  const jwtToken = localStorage.jwtToken;
   const classes = useStyles();
   const theme = useTheme();
   const username = useRef();
@@ -45,6 +46,10 @@ export default function Login() {
   const [error, setError] = useState();
   const dispatch = useDispatch();
   const history = useHistory();
+
+  if(jwtToken){
+    history.push('/dashboard')
+  }
 
   const handleSubmit = () => {
       let newUser = {

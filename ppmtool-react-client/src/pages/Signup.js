@@ -36,6 +36,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Signup() {
 
+  const jwtToken = localStorage.jwtToken;
   const classes = useStyles();
   const theme = useTheme();
   const username = useRef();
@@ -47,9 +48,13 @@ export default function Signup() {
   const [error, setError] = useState({})
 
 
+  if(jwtToken){
+    history.push('/dashboard')
+  }
+
   async function createUser(user) {
     try{
-      const res = await axios.post('/api/users/register', user)
+      await axios.post('/api/users/register', user)
       dispatch({
         type: GET_ERRORS,
         payload: {}
