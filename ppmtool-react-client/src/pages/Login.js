@@ -3,6 +3,9 @@ import { Grid, Typography, TextField, Card, Button } from '@material-ui/core';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import { useHistory } from 'react-router-dom';
 import axios from 'axios';
+import jwt_decode from 'jwt-decode';
+import { useDispatch, useSelector } from 'react-redux';
+import { SET_CURRENT_USER } from '../actions/types';
 
 const useStyles = makeStyles((theme) => ({
     cardStyle:{
@@ -38,15 +41,45 @@ export default function Login() {
   const theme = useTheme();
   const username = useRef();
   const password = useRef();
-  const [errors, setErrors] = useState()
+  const [errors, setErrors] = useState();
+  const dispatch = useDispatch();
+  const history = useHistory();
 
   const handleSubmit = () => {
       let newUser = {
         username: username.current.value,
         password: password.current.value,
       }
+      verifyUser(newUser);
+  }
 
-      console.log(newUser)
+  async function verifyUser(user) {
+    try{
+      const res = await axios.post('/api/users/login', user)
+      const { token } = res.data;
+      localStorage.setItem("jwtToken", token)
+      setJWTToken(token);
+      const decoded = jwt_decode(token);
+      dispatch({
+        type: SET_CURRENT_USER,
+        payload: decoded
+      })
+      history.push("/")
+    } catch(err){
+    //   dispatch({
+    //     type: GET_ERRORS,
+    //     payload: err.response.data
+    //   })
+    //   setError(err.response.data)
+    }
+  }
+
+  const setJWTToken = (token) => {
+    if(token){
+      axios.defaults.headers.common["Authorization"] = token;
+    } else {
+      delete axios.defaults.headers.common["Authorization"];
+    }
   }
 
   return(
