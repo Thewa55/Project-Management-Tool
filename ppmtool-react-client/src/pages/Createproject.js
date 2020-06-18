@@ -82,7 +82,7 @@ const Createproject = (props) => {
         type: GET_ERRORS,
         payload: {}
       })
-      history.push('/')
+      history.push('/dashboard')
     } catch (err) {
       dispatch({
         type: GET_ERRORS,

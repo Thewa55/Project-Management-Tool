@@ -47,6 +47,7 @@ const useStyles = makeStyles((theme) => ({
     width: "80%",
     marginTop: "1em",
     textAlign: "center",
+    marginBottom: "1em",
     [theme.breakpoints.down("md")]:{
         margin: ".3em"
     },
@@ -74,7 +75,7 @@ export default function DeleteModal(props) {
   const deleteTask = async (projectId, projectSequence,) =>{
     console.log(projectId + " | " + projectSequence)
     await axios.delete(`/api/backlog/${projectId}/${projectSequence}`);
-    // handleClose()
+    handleClose()
   }
   
   const body = (

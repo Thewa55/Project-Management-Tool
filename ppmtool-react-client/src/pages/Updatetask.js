@@ -102,11 +102,11 @@ export default function UpdateTask(){
     }
   }
 
-  async function updateTask(task) {
+  async function updateTask(task, id) {
     let url = getRoute()
     try {
       await axios.patch(url, task)
-      history.push('/')
+      history.push(`/projectboard/${id}`)
       dispatch({
         type: GET_ERRORS,
         payload: {}
@@ -134,7 +134,7 @@ export default function UpdateTask(){
         status: taskStatus,
         priority: taskPriority
     }
-    updateTask(updatedTask);
+    updateTask(updatedTask, projectId);
   }
 
   const getRoute = () =>{

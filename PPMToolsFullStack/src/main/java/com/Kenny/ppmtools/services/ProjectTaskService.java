@@ -32,7 +32,7 @@ public class ProjectTaskService {
         Backlog backlog = projectService.findProjectByIdentifier(projectIdentifier, username).getBacklog();
 
             projectTask.setBacklog(backlog);
-
+        System.out.println(backlog);
             Integer BacklogSequence = backlog.getPTSequence();
             BacklogSequence++;
             backlog.setPTSequence(BacklogSequence);

@@ -3,6 +3,7 @@ import { Grid, TextField, Card, Typography, Button } from '@material-ui/core';
 import { useDispatch} from 'react-redux';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import { useHistory } from 'react-router-dom'
+import { GET_ERRORS} from '../actions/types'
 import axios from 'axios';
 
 
@@ -102,16 +103,16 @@ export default function Createtask(){
 
   async function createTask(projecttask) {
     let id = getID()
-    // try {
+    try {
       await axios.post(`/api/backlog/${id}`, projecttask)
       history.push(`/projectboard/${id}`)
-    // } catch (err) {
-    //   dispatch({
-    //     type: GET_ERRORS,
-    //     payload: err.response.data
-    //   })
-    //   setError(err.response.data)
-    // }
+    } catch (err) {
+      dispatch({
+        type: GET_ERRORS,
+        payload: err.response.data
+      })
+      setError(err.response.data)
+    }
   }
 
   const handleSubmit = () =>{

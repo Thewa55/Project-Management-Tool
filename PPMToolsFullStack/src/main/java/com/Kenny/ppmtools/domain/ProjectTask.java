@@ -14,14 +14,14 @@ public class ProjectTask {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long Id;
-    @Column(updatable = false)
+    @Column(updatable = false, unique = true)
     private String projectSequence;
     @NotBlank(message = "Please include a summary")
     private String summary;
     private String acceptanceCriteria;
     private String status;
     private Integer priority;
-    @Column(updatable = false, unique = true)
+    @Column(updatable = false)
     private String projectIdentifier;
     @JsonFormat(pattern = "yyyy-MM-dd")
     private Date dueDate;

@@ -10,13 +10,14 @@ import Signup from './pages/Signup';
 import Login from './pages/Login';
 import Landing from './pages/Landing'
 import 'typeface-roboto';
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { Provider } from 'react-redux';
 import store from './store';
 import jwt_decode from 'jwt-decode';
 import setJWTToken from './utils/setJWTToken';
 import { SET_CURRENT_USER } from './actions/types';
-import { logout } from './utils/logout'
+import { logout } from './utils/logout';
+import SecureRoutes from './utils/SecureRoutes'
 
 
 const jwtToken = localStorage.jwtToken;
@@ -28,7 +29,6 @@ if(jwtToken){
     type: SET_CURRENT_USER,
     payload: decoded
   });
-
   const currentTime = Date.now() /1000
   console.log("Time for expiration " + decoded.exp + ". Time now " + currentTime)
   if(decoded.exp < currentTime){
@@ -36,6 +36,7 @@ if(jwtToken){
     window.location.href="/"
   }
 }
+
 
 function App() {
   return (
@@ -52,6 +53,14 @@ function App() {
           <Route exact path="/projectboard/:id" component={Projectboard} />
           <Route exact path="/createtask/:id" component={Createtask} />
           <Route exact path="/updatetask/:id/:task_id" component={Updatetask} />
+          {/* <Switch>
+          <SecureRoutes exact path="/dashboard" component={Dashboard} />
+          <SecureRoutes exact path="/createproject" component={Createproject} />
+          <SecureRoutes exact path="/updateproject/:id" component={Updateproject} />
+          <SecureRoutes exact path="/projectboard/:id" component={Projectboard} />
+          <SecureRoutes exact path="/createtask/:id" component={Createtask} />
+          <SecureRoutes exact path="/updatetask/:id/:task_id" component={Updatetask} />
+          </Switch> */}
         </div>
       </Router>
     </Provider>

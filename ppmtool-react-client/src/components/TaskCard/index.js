@@ -9,6 +9,9 @@ const useStyles = makeStyles((theme) => ({
   cardStyle: {
     margin: "1em",
     width: "93%",
+    [theme.breakpoints.down("md")]:{
+      width: '88%'
+    }
   },
   cardTitle: {
     width: "100%",
@@ -19,6 +22,18 @@ const useStyles = makeStyles((theme) => ({
   },
   linkStyle: {
     textDecoration: "none"
+  },
+  button:{
+    width: "80%",
+    marginTop: "1em",
+    textAlign: "center",
+    [theme.breakpoints.down("md")]:{
+        margin: ".3em"
+    },
+    [theme.breakpoints.down("sm")]:{
+        width: "30%",
+        margin: ".15em"
+    }
   }
 }))
 
@@ -58,7 +73,7 @@ export default function TaskCard(props) {
         <Grid container direction="row" justify="center" alignItems="center" spacing={10}>
           <Grid item>
             <Link to={`/updatetask/${props.projectId}/${props.projectTask.projectSequence}`} className={classes.linkStyle}>
-              <Button size="small" color="primary" className={classes.buttonStyle}>
+              <Button variant="outlined" className={classes.button} color="secondary" size="small" color="primary" className={classes.buttonStyle}>
                 View/Update
               </Button>
             </Link>

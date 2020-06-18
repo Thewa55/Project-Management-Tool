@@ -26,7 +26,7 @@ const useStyles = makeStyles((theme) => ({
   },
   button:{
     width: "80%",
-    // marginTop: "1em",
+    marginTop: "1em",
     textAlign: "center",
     [theme.breakpoints.down("md")]:{
         margin: ".3em"
@@ -55,12 +55,12 @@ export default function ProjectItems(props) {
         </Grid>
         <Grid item xs={12} md={3}>
             <Grid container direction="row" justify="center" alignItems="center" className={classes.innerGrid}>
-              <Link  to={`/projectboard/${props.project.projectIdentifier}`}>
-                <Button variant="outlined" >Board </Button>
-              </Link>
-              <Link className={classes.button} to={`/updateproject/${props.project.projectIdentifier}`}>
-                <Button  variant="outlined" color="primary" >Update</Button>
-              </Link>
+              {/* <Link  to={`/projectboard/${props.project.projectIdentifier}`}> */}
+                <Button href={`/projectboard/${props.project.projectIdentifier}`} className={classes.button} variant="outlined" >Board </Button>
+              {/* </Link> */}
+              {/* <Link className={classes.button} to={`/updateproject/${props.project.projectIdentifier}`}> */}
+                <Button href={`/updateproject/${props.project.projectIdentifier}`} className={classes.button} variant="outlined" color="primary" >Update</Button>
+              {/* </Link> */}
               <DeleteModal projectId={props.project.projectIdentifier}/>
             </Grid>
         </Grid>

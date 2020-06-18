@@ -77,7 +77,7 @@ export default function UpdateProject(){
   async function updateProject(project) {
     try {
       await axios.post("/api/project/", project)
-      history.push('/')
+      history.push('/dashboard')
       dispatch({
         type: GET_ERRORS,
         payload: {}
