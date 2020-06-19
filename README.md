@@ -20,14 +20,15 @@ This application has built in authentication using JSON web tokens that allows a
 
 ## #Technology
 
-Front End:
+### Front End:<br>
 React<br>
 JavaScript<br>
 Material UI<br>
 axios<br>
 Redux<br>
 
-Back End:
+
+### Back End:<br>
 Java<br>
 Spring Boot 2.0<br>
 JWT<br>
