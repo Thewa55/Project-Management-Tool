@@ -2,7 +2,6 @@ import React from 'react';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import { Card, CardContent, Button, Typography, Grid } from '@material-ui/core';
 import DeleteModal from '../DeleteModal';
-import { Link } from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -55,12 +54,8 @@ export default function ProjectItems(props) {
         </Grid>
         <Grid item xs={12} md={3}>
             <Grid container direction="row" justify="center" alignItems="center" className={classes.innerGrid}>
-              {/* <Link  to={`/projectboard/${props.project.projectIdentifier}`}> */}
-                <Button href={`/projectboard/${props.project.projectIdentifier}`} className={classes.button} variant="outlined" >Board </Button>
-              {/* </Link> */}
-              {/* <Link className={classes.button} to={`/updateproject/${props.project.projectIdentifier}`}> */}
-                <Button href={`/updateproject/${props.project.projectIdentifier}`} className={classes.button} variant="outlined" color="primary" >Update</Button>
-              {/* </Link> */}
+              <Button href={`/projectboard/${props.project.projectIdentifier}`} className={classes.button} variant="outlined" >Board </Button>
+              <Button href={`/updateproject/${props.project.projectIdentifier}`} className={classes.button} variant="outlined" color="primary" >Update</Button>
               <DeleteModal projectId={props.project.projectIdentifier}/>
             </Grid>
         </Grid>

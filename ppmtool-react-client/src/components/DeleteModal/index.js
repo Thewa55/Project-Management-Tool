@@ -80,7 +80,6 @@ export default function DeleteModal(props) {
     handleClose();
   }
   
-  // console.log(props)
   const body = (
     <div style={modalStyle} className={classes.paper}>
       <Typography className={classes.titleStyle} component="h6" variant="h6">Are you sure you want to delete the project?</Typography>

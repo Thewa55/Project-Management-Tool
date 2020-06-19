@@ -1,13 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { Grid, withStyles, Typography, Button } from '@material-ui/core';
-import ProjectItems from "../components/ProjectItems"
-import { useDispatch, useSelector } from 'react-redux'
-import { GET_PROJECTS } from '../actions/types'
-import axios from 'axios'
+import ProjectItems from "../components/ProjectItems";
 
 const styles = theme => ({
     dashPadding: {
-      // marginTop: theme.spacing(3),
       paddingBottom: "2em"
     },
     title: {
