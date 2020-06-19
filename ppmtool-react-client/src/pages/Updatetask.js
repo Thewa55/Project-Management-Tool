@@ -175,7 +175,7 @@ export default function UpdateTask(){
 
           <TextField className={classes.textFieldStyle} id="outlined-full-width" label="Due Date" type="Date" style={{ margin: 15 }} placeholder="Due Date" margin="normal" variant="outlined" InputLabelProps={{ shrink: true }} inputRef={dueDate}  value={singleTask.dueDate} onChange={e => setSingleTask({dueDate: e.target.value})}/>
 
-          <TextField select label="Priority" className={classes.textDateFieldStyle} onChange={handleChange} style={{ margin: 15}} SelectProps={{ native: true }} value={singleTask.priority} InputLabelProps={{ shrink: true }} helperText="Please select task priority"> onChange={e => setTaskPriority(e.target.value)} >
+          <TextField select label="Priority" className={classes.textDateFieldStyle} onChange={handleChange} style={{ margin: 15}} SelectProps={{ native: true }} value={singleTask.priority} InputLabelProps={{ shrink: true }} helperText="Please select task priority" onChange={e => setTaskPriority(e.target.value)} >
             {priority.map((option, index) => (
               <option key={index} value={option.value}>
                 {option.label}

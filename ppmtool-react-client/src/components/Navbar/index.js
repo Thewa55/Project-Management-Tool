@@ -73,7 +73,7 @@ export default function Navbar() {
           <Link to="/dashboard" className={classes.linkStyle}>
             <Button color="primary"><h3>Dashboard</h3></Button>
           </Link>
-          <Link className={classes.linkStyle}>
+          <Link to="/" className={classes.linkStyle}>
             <Button onClick={userLogout} color="primary"><h3>Log out</h3></Button>
           </Link>
         </Box>

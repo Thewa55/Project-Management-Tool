@@ -43,7 +43,10 @@ export default function Login() {
   const theme = useTheme();
   const username = useRef();
   const password = useRef();
-  const [error, setError] = useState();
+  const [error, setError] = useState({
+    username: "",
+    password: ""
+  });
   const dispatch = useDispatch();
   const history = useHistory();
 
@@ -80,6 +83,7 @@ export default function Login() {
     }
   }
 
+  console.log(error)
   return(
     <>
       <Grid container direction="row" justify="center" alignItems="center" spacing={1}>
@@ -87,9 +91,9 @@ export default function Login() {
           <Typography variant="h3" className={classes.typographyStyle}>Welcome, please log in</Typography>
           <form noValidate autoComplete="off" className={classes.formStyle}>
             <TextField className={classes.textFieldStyle} label="E-mail (User Name)" style={{ margin: 10 }} type="email" placeholder="E-mail (User Name)" margin="normal" variant="outlined" inputRef={username} />
-            {/* <div className={classes.errorStyle}>{error.projectName}</div> */}
+            <div className={classes.errorStyle}>{error.username}</div>
             <TextField className={classes.textFieldStyle} id="outlined-full-width" label="Password" type="password" style={{ margin: 10 }} placeholder="Password" margin="normal" variant="outlined" inputRef={password}/>
-            {/* <div className={classes.errorStyle}>{error.description}</div> */}
+            <div className={classes.errorStyle}>{error.password}</div>
             <Button className={classes.buttonStyle} style={{ margin: 15, marginBottom: "3em"}} variant="contained" color="primary" onClick={handleSubmit}>Submit</Button>
           </form>
         </Card>

@@ -1,7 +1,7 @@
-# Note Taker
+# Project Management Tool
 
 ## Description
-A person project management tool 
+A personal project management tool 
 *Note from developer: Project is a finished produce and is 100% operable, I want to make the project more presentable then what it looks before deployment
 ## Table of content
 [#Installation](#Installation)<br>
