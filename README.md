@@ -13,7 +13,7 @@ A person project management tool
 ## #Installation
 Make sure terminal is in the "ppmtool-react-client" folder before you run npm i, otherwise you will not be able to install the dependencies in the package.json.
 
-The Java side of the project is built off Maven. Maven should automaticaly download pom.xml dependencies.
+The Java side of the project is built off Maven. Open PPMToolsFullStack in your favorite IDE and Maven should automatically detect the dependencies.
 
 ## #Usage
 This application has built in authentication using JSON web tokens that allows a user to create a project with the ability to update the project and adding tasks associated to the project. The project tasks can be given a priority and status and the user will be given an overview of the tasks on the project task board. 
