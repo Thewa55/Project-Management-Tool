@@ -2,7 +2,6 @@ import React from 'react'
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import { Grid, Typography, Button, Card, CardContent, CardActionArea, CardActions } from '@material-ui/core';
 import { Link } from 'react-router-dom'
-import axios from 'axios';
 import DeleteTaskModal from '../DeleteTaskModal'
 
 const useStyles = makeStyles((theme) => ({

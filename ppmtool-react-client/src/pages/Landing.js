@@ -12,19 +12,18 @@ const styles = theme => ({
     },
     title: {
       fontSize: "5em",
+      marginTop: "1em",
       [theme.breakpoints.down("sm")]:{
         fontSize: "3em"
       }
-    } 
+    },
+    button: {
+      background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
+      boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)'
+    }
 })
 
 function Landing(props){
-
-  const dispatch = useDispatch()
-
-//   useEffect(()=>{
-//     getProjects()
-//   }, [allProjects])
 
   const {classes} = props
 
@@ -32,15 +31,13 @@ function Landing(props){
     <div>  
       <Grid container direction="row" justify="center" alignItems="center">
         <Typography className={classes.title}>
-          Personal Project Manager
+          Project Manager Tool
         </Typography>
         <Grid container justify="center">
-          <Button variant="contained" color="primary" href="/signup">Sign Up</Button>
-          <Button variant="contained" color="primary" href="/login">Login</Button>
+          <Button style={{ margin: "1em"}} variant="contained" color="primary" href="/signup">Sign Up</Button>
+          <Button style={{ margin: "1em"}} variant="contained" color="primary" href="/login">Login</Button>
         </Grid>
       </Grid>
-
-      <hr style={{width: "80%"}}/>
     </div>
   )
 }

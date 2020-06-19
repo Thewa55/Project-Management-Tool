@@ -1,7 +1,7 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { Modal, Button, Typography, Grid } from '@material-ui/core/';
-import { DELETE_PROJECT } from '../../actions/types';
+import { DELETE_PROJECT, GET_ERRORS } from '../../actions/types';
 import { useDispatch } from 'react-redux'
 import axios from 'axios'
 
@@ -73,9 +73,19 @@ export default function DeleteModal(props) {
   };
 
   const deleteTask = async (projectId, projectSequence,) =>{
-    console.log(projectId + " | " + projectSequence)
-    await axios.delete(`/api/backlog/${projectId}/${projectSequence}`);
-    handleClose()
+    try{
+      await axios.delete(`/api/backlog/${projectId}/${projectSequence}`);
+      handleClose()
+      dispatch({
+        type: GET_ERRORS,
+        payload: {}
+      })
+    } catch(err) {
+      dispatch({
+        type: GET_ERRORS,
+        payload: err.response.data
+      })
+    }
   }
   
   const body = (
