@@ -1,8 +1,8 @@
 # Project Management Tool
 
 ## Description
-A personal project management tool 
-*Note from developer: Project is a finished produce and is 100% operable, I want to make the project more presentable then what it looks before deployment
+A personal project management tool <br>
+*Note from developer: Project is a finished product and is 100% operable, I am currently working on the UI/UX before deployment
 ## Table of content
 [#Installation](#Installation)<br>
 [#Usage](#Usage)<br>
