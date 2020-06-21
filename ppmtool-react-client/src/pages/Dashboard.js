@@ -23,9 +23,9 @@ function Dashboard(props){
   const dispatch = useDispatch()
   const [allProjects, setProjects] = useState([])
 
-  const projects = useSelector(state => ({
-    projects: state.projects
-  }))
+  // const projects = useSelector(state => ({
+  //   projects: state.projects
+  // }))
 
   async function getProjects() {
     const res = await axios.get("/api/project/all/")

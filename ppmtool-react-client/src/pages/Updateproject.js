@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Grid, TextField, Card, Typography, Button, withStyles } from '@material-ui/core';
-import { useDispatch, useSelector } from 'react-redux';
+import { Grid, TextField, Card, Typography, Button } from '@material-ui/core';
+import { useDispatch } from 'react-redux';
 import { GET_PROJECT, GET_ERRORS } from '../actions/types';
-import { makeStyles, useTheme } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import { useHistory } from 'react-router-dom'
 import axios from 'axios';
 
@@ -43,7 +43,6 @@ const useStyles = makeStyles((theme) => ({
 export default function UpdateProject(){
   
   const classes = useStyles();
-  const theme = useTheme();
   const [singleProject, setSingleProject] = useState({})
   const dispatch = useDispatch()
   const history = useHistory()
@@ -55,9 +54,9 @@ export default function UpdateProject(){
   const projectEnd = useRef();
   const [error, setError] = useState({})
 
-  const project = useSelector(state => ({
-    project: state.projects
-  }))
+  // const project = useSelector(state => ({
+  //   project: state.projects
+  // }))
 
   async function getProject() {
     let url = window.location.pathname;

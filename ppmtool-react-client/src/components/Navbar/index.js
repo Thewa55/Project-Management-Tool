@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { Box, Typography, Button, Grid } from "@material-ui/core";
-import { makeStyles, useTheme } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { logout } from '../../utils/logout'
@@ -39,7 +39,6 @@ export default function Navbar() {
   const dispatch = useDispatch();
   
   const classes = useStyles();
-  const theme = useTheme();
   let NavbarLinks;
 
   const userLogout = () => {

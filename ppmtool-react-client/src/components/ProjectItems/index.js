@@ -1,5 +1,5 @@
 import React from 'react';
-import { makeStyles, useTheme } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import { Card, CardContent, Button, Typography, Grid } from '@material-ui/core';
 import DeleteModal from '../DeleteModal';
 
@@ -39,7 +39,6 @@ const useStyles = makeStyles((theme) => ({
 
 export default function ProjectItems(props) {
   const classes = useStyles();
-  const theme = useTheme();
 
   return (
     <Card className={classes.root} elevation = {3}>

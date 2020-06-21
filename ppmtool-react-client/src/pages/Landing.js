@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { Grid, withStyles, Typography, Button } from '@material-ui/core';
-import ProjectItems from "../components/ProjectItems";
 
 const styles = theme => ({
     dashPadding: {

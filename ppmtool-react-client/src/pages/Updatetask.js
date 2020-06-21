@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Grid, TextField, Card, Typography, Button, withStyles, Paper } from '@material-ui/core';
-import { useDispatch, useSelector } from 'react-redux';
+import { Grid, TextField, Card, Typography, Button, Paper } from '@material-ui/core';
+import { useDispatch } from 'react-redux';
 import { GET_PROJECT_TASK, GET_ERRORS } from '../actions/types';
-import { makeStyles, useTheme } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import { useHistory } from 'react-router-dom'
 import axios from 'axios';
 
@@ -73,7 +73,6 @@ const priority = [
 export default function UpdateTask(){
   
   const classes = useStyles();
-  const theme = useTheme();
   const [singleTask, setSingleTask] = useState({})
   const dispatch = useDispatch()
   const history = useHistory()

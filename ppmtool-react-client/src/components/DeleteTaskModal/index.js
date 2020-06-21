@@ -1,7 +1,7 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { Modal, Button, Typography, Grid } from '@material-ui/core/';
-import { DELETE_PROJECT, GET_ERRORS } from '../../actions/types';
+import { GET_ERRORS } from '../../actions/types';
 import { useDispatch } from 'react-redux'
 import axios from 'axios'
 

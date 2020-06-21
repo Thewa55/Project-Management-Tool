@@ -1,5 +1,5 @@
 import React from 'react'
-import { makeStyles, useTheme } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import { Grid, Typography, Button, Card, CardContent, CardActionArea, CardActions } from '@material-ui/core';
 import { Link } from 'react-router-dom'
 import DeleteTaskModal from '../DeleteTaskModal'
@@ -39,7 +39,6 @@ const useStyles = makeStyles((theme) => ({
 export default function TaskCard(props) {
 
   const classes = useStyles();
-  const theme = useTheme(); 
   
   let priorityColor = { backgroundColor : "red" };
   let text = "High"
@@ -72,7 +71,7 @@ export default function TaskCard(props) {
         <Grid container direction="row" justify="center" alignItems="center" spacing={10}>
           <Grid item>
             <Link to={`/updatetask/${props.projectId}/${props.projectTask.projectSequence}`} className={classes.linkStyle}>
-              <Button variant="outlined" className={classes.button} color="secondary" size="small" color="primary" className={classes.buttonStyle}>
+              <Button variant="outlined" size="small" color="primary" className={classes.buttonStyle}>
                 View/Update
               </Button>
             </Link>

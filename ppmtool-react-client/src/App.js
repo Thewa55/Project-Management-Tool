@@ -10,14 +10,14 @@ import Signup from './pages/Signup';
 import Login from './pages/Login';
 import Landing from './pages/Landing'
 import 'typeface-roboto';
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { BrowserRouter as Router, Route } from "react-router-dom";
 import { Provider } from 'react-redux';
 import store from './store';
 import jwt_decode from 'jwt-decode';
 import setJWTToken from './utils/setJWTToken';
 import { SET_CURRENT_USER } from './actions/types';
 import { logout } from './utils/logout';
-import SecureRoutes from './utils/SecureRoutes'
+// import SecureRoutes from './utils/SecureRoutes'
 
 
 const jwtToken = localStorage.jwtToken;

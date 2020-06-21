@@ -1,6 +1,6 @@
 import React, { useRef, useState, useEffect } from 'react'
 import { Grid, TextField, Card, Typography, Button, withStyles } from '@material-ui/core';
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import axios from 'axios'
 import { GET_ERRORS } from '../actions/types'
 import { useHistory } from 'react-router-dom'
@@ -40,7 +40,7 @@ const styles = theme => ({
 
 const Createproject = (props) => {
 
-  const {classes, theme } = props;
+  const { classes } = props;
   const dispatch = useDispatch()
   const history = useHistory()
   const projectName = useRef();
@@ -65,11 +65,9 @@ const Createproject = (props) => {
     createProject(newProject);
   }
 
-
-
-  const errors = useSelector(state => ({
-    errors: state.errors
-  }))
+  // const errors = useSelector(state => ({
+  //   errors: state.errors
+  // }))
 
   useEffect(() => {
     
@@ -102,7 +100,7 @@ const Createproject = (props) => {
             <div className={classes.errorStyle}>{error.projectName}</div>
             <TextField className={classes.textFieldStyle} id="outlined-full-width" label="Project ID" style={{ margin: 10 }} placeholder="Project ID" margin="normal" variant="outlined" inputRef={projectId}/>
             <div className={classes.errorStyle}>{error.projectIdentifier}</div>
-            <TextField className={classes.textFieldStyle} placeholder="MultiLine with rows: 2 and rowsMax: 4" multiline rows={2} rowsMax={4} id="outlined-full-width" label="Project Description" style={{ margin: 10 }} placeholder="Project Description" margin="normal" variant="outlined" inputRef={projectDesc} />
+            <TextField className={classes.textFieldStyle} multiline rows={2} rowsMax={4} id="outlined-full-width" label="Project Description" style={{ margin: 10 }} placeholder="Project Description" margin="normal" variant="outlined" inputRef={projectDesc} />
             <div className={classes.errorStyle}>{error.description}</div>
             <TextField className={classes.textDateFieldStyle} id="outlined-full-width" label="Start Date" type="Date" style={{ margin: 15 }} placeholder="Project Name" margin="normal" variant="outlined" InputLabelProps={{ shrink: true }} inputRef={projectStart} />
             <TextField className={classes.textDateFieldStyle} id="outlined-full-width" label="End Date" type="Date" style={{ margin: 15}} placeholder="Project Name" margin="normal" variant="outlined" InputLabelProps={{ shrink: true }} inputRef={projectEnd} />
