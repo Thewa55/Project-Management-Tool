@@ -1,44 +1,3 @@
-// import React from "react";
-// import { Grid, withStyles, Typography, Button } from '@material-ui/core';
-
-// const styles = theme => ({
-//     dashPadding: {
-//       paddingBottom: "2em"
-//     },
-//     title: {
-//       fontSize: "5em",
-//       marginTop: "1em",
-//       [theme.breakpoints.down("sm")]:{
-//         fontSize: "3em"
-//       }
-//     },
-//     button: {
-//       background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
-//       boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)'
-//     }
-// })
-
-// function Landing(props){
-
-//   const {classes} = props
-
-//   return(
-//     <div>  
-//       <Grid container direction="row" justify="center" alignItems="center">
-//         <Typography className={classes.title}>
-//           Project Manager Tool
-//         </Typography>
-//         <Grid container justify="center">
-//           <Button style={{ margin: "1em"}} variant="contained" color="primary" href="/signup">Sign Up</Button>
-//           <Button style={{ margin: "1em"}} variant="contained" color="primary" href="/login">Login</Button>
-//         </Grid>
-//       </Grid>
-//     </div>
-//   )
-// }
-
-// export default withStyles(styles)(Landing);
-
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
@@ -88,13 +47,17 @@ export default function Landing() {
         <Grid item md={6}>
           <div className={classes.mainFeaturedPostContent}>
             <Typography component="h1" variant="h3" color="inherit" gutterBottom>
-              Welcome to Personal Project Management Tool
+              Welcome to <br/>Project Management Tool
             </Typography>
             <Typography variant="h5" color="inherit" paragraph>
               Where you can easily create and maintain your project goals from start to finish
             </Typography>
-            <Link variant="subtitle1" href="/signup">
-              Click here to sign up
+            <Link variant="subtitle1" style={{ color: "white"}} href="/signup">
+              Don't have an account? Click here to sign up
+            </Link>
+            <br/>
+            <Link variant="subtitle1" style={{ color: "white"}} href="/login">
+              Existing user? Log in here
             </Link>
           </div>
         </Grid>
