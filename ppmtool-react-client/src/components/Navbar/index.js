@@ -85,7 +85,7 @@ export default function Navbar() {
               Dashboard
             </Button>
           </Link>
-          <Link to="/login" className={classes.linkStyle}>
+          <Link to="/" className={classes.linkStyle}>
             <Button onClick={userLogout} className={classes.buttonStyle}  variant="outlined" size="small">
               Log out
             </Button>
