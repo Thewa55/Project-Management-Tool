@@ -7,7 +7,7 @@ const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
     width: '80%',
-    height: '10em',
+    // height: '10em',
     marginTop: '1em',
     [theme.breakpoints.down("sm")]:{
       height: '15em'
@@ -21,11 +21,11 @@ const useStyles = makeStyles((theme) => ({
     flex: '1 0 auto',
   },
   innerGrid:{
-    // marginTop: "1em"
+    marginTop: "1em"
   },
   button:{
     width: "80%",
-    marginTop: "1em",
+    marginTop: ".5em",
     textAlign: "center",
     [theme.breakpoints.down("md")]:{
         margin: ".3em"

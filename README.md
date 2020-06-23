@@ -34,6 +34,7 @@ Spring Boot 2.0<br>
 JWT<br>
 MySQL<br>
 H2 console<br>
+Hibernate<br>
 
 ## #Credits
 

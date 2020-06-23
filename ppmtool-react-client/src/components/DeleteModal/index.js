@@ -45,8 +45,9 @@ const useStyles = makeStyles((theme) => ({
   },
   button:{
     width: "80%",
-    marginTop: "1em",
+    marginTop: ".5em",
     textAlign: "center",
+    marginBottom: "1em",
     [theme.breakpoints.down("md")]:{
         margin: ".3em"
     },

@@ -5,6 +5,8 @@ import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 import Link from '@material-ui/core/Link';
 import Image from '../assets/images/ProjectManagement.jpg'
+import { useDispatch } from 'react-redux';
+import { logout } from '../utils/logout'
 
 const useStyles = makeStyles((theme) => ({
   mainFeaturedPost: {
@@ -36,14 +38,19 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function Landing() {
-  const classes = useStyles();
 
-  return (
-    <Paper className={classes.mainFeaturedPost}>
-      {/* Increase the priority of the hero background image */}
-      {<img style={{ display: 'none' }} />}
-      <div className={classes.overlay} />
-      <Grid container>
+  const classes = useStyles();
+  const dispatch = useDispatch();
+  const jwtToken = localStorage.jwtToken;
+  let Landingpage;
+
+  const userLogout = () => {
+    dispatch(logout());
+    // window.location.href="/";
+  }
+
+  const NotAuthLanding = (
+    <Grid container>
         <Grid item md={6}>
           <div className={classes.mainFeaturedPostContent}>
             <Typography component="h1" variant="h3" color="inherit" gutterBottom>
@@ -62,6 +69,43 @@ export default function Landing() {
           </div>
         </Grid>
       </Grid>
+  )
+
+  const AuthLanding = (
+    <Grid container>
+      <Grid item md={6}>
+        <div className={classes.mainFeaturedPostContent}>
+          <Typography component="h1" variant="h3" color="inherit" gutterBottom>
+            Welcome Back
+          </Typography>
+          <Typography variant="h5" color="inherit" paragraph>
+            
+          </Typography>
+          <Link variant="subtitle1" style={{ color: "white"}} href="/dashboard">
+            Go back to your dashboard
+          </Link>
+          <br/>
+          <Link variant="subtitle1" onClick={userLogout} style={{ color: "white"}} href="/">
+            You are currently logged in, would you like to log out?
+          </Link>
+        </div>
+      </Grid>
+    </Grid>
+  )
+
+  if(jwtToken){
+    Landingpage = AuthLanding
+  } else {
+    Landingpage = NotAuthLanding
+  }
+
+
+  return (
+    <Paper className={classes.mainFeaturedPost}>
+      {/* Increase the priority of the hero background image */}
+      {<img style={{ display: 'none' }} />}
+      <div className={classes.overlay} />
+      {Landingpage}
     </Paper>
   );
 }

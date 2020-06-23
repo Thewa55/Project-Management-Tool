@@ -57,8 +57,6 @@ export default function Navbar() {
     state.security
   ))
 
-  console.log(user.user)
-
   const NotAuthNavbar = (
       <Grid item xs={12} sm={4} className={classes.gridStyle}>
         <Box flexGrow={1} textAlign="center" style={{fontFamily: "typeface-roboto"}}>
@@ -90,12 +88,6 @@ export default function Navbar() {
               Log out
             </Button>
           </Link>
-          {/* <Link to="/dashboard" className={classes.linkStyle}>
-            <Button color="primary"><h3>Dashboard</h3></Button>
-          </Link>
-          <Link to="/" className={classes.linkStyle}>
-            <Button onClick={userLogout} color="primary"><h3>Log out</h3></Button>
-          </Link> */}
         </Box>
       </Grid>  
   );
