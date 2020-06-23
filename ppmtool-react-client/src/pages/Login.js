@@ -1,10 +1,10 @@
 import React, { useRef, useState } from 'react';
 import { Grid, Typography, TextField, Card, Button } from '@material-ui/core';
-import { makeStyles, useTheme } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import { useHistory } from 'react-router-dom';
 import axios from 'axios';
 import jwt_decode from 'jwt-decode';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { SET_CURRENT_USER, GET_ERRORS } from '../actions/types';
 import setJWTToken from '../utils/setJWTToken'
 
@@ -40,7 +40,6 @@ export default function Login() {
 
   const jwtToken = localStorage.jwtToken;
   const classes = useStyles();
-  const theme = useTheme();
   const username = useRef();
   const password = useRef();
   const [error, setError] = useState({
