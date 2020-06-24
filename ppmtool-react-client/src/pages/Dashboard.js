@@ -4,6 +4,7 @@ import ProjectItems from "../components/ProjectItems"
 import { useDispatch, useSelector } from 'react-redux'
 import { GET_PROJECTS } from '../actions/types'
 import axios from 'axios'
+import { useHistory } from 'react-router-dom';
 
 const styles = theme => ({
     dashPadding: {
@@ -20,12 +21,14 @@ const styles = theme => ({
 
 function Dashboard(props){
 
-  const dispatch = useDispatch()
-  const [allProjects, setProjects] = useState([])
+  const dispatch = useDispatch();
+  const [allProjects, setProjects] = useState([]);
+  const jwtToken = localStorage.jwtToken;
+  const history = useHistory();
 
-  // const projects = useSelector(state => ({
-  //   projects: state.projects
-  // }))
+  if(!jwtToken){
+    history.push('/');
+  }
 
   async function getProjects() {
     const res = await axios.get("/api/project/all/")

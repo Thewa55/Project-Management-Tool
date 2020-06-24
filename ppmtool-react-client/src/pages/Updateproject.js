@@ -53,10 +53,11 @@ export default function UpdateProject(){
   const projectStart = useRef();
   const projectEnd = useRef();
   const [error, setError] = useState({})
+  const jwtToken = localStorage.jwtToken;
 
-  // const project = useSelector(state => ({
-  //   project: state.projects
-  // }))
+  if(!jwtToken){
+    history.push('/')
+  }
 
   async function getProject() {
     let url = window.location.pathname;

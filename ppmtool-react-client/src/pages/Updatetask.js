@@ -73,17 +73,22 @@ const priority = [
 export default function UpdateTask(){
   
   const classes = useStyles();
-  const [singleTask, setSingleTask] = useState({})
-  const dispatch = useDispatch()
-  const history = useHistory()
+  const [singleTask, setSingleTask] = useState({});
+  const dispatch = useDispatch();
+  const history = useHistory();
   const taskSummary = useRef();
   const id = useRef();
   const taskCriteria = useRef();
   const dueDate = useRef();
-  const [error, setError] = useState({})
-  const [taskPriority, setTaskPriority] = useState()
-  const [taskStatus, setTaskStatus] = useState()
-  const [pageError, setPageError] = useState()
+  const [error, setError] = useState({});
+  const [taskPriority, setTaskPriority] = useState();
+  const [taskStatus, setTaskStatus] = useState();
+  const [pageError, setPageError] = useState();
+  const jwtToken = localStorage.jwtToken;
+
+  if(!jwtToken){
+    history.push('/')
+  }
 
   async function getTask() {
     let url = getRoute();
@@ -144,14 +149,6 @@ export default function UpdateTask(){
     return route
   }
 
-  const handleChange = (event) => {
-    setTaskPriority(event.target.value);
-  };
-
-  const handleStatus =(event) =>{
-    setTaskStatus(event.target.value)
-  }
-
   useEffect(() => {
     getTask()
   }, [error])
@@ -161,7 +158,7 @@ export default function UpdateTask(){
       { !pageError ? (
     <Grid container direction="column" justify="flex-start" alignItems="center" spacing={1}>
       <Card className={classes.cardStyle}>
-        <Typography variant="h2" className={classes.typographyStyle}>Update Project</Typography>
+        <Typography variant="h2" className={classes.typographyStyle}>Update Task</Typography>
         <form noValidate autoComplete="off" className={classes.formStyle}>
           <TextField style={{visibility: "hidden"}} inputRef={id} value={singleTask.id}></TextField>
           <TextField className={classes.textFieldStyle} label="Task Summary" style={{ margin: 10 }} placeholder="Task Summary" margin="normal" variant="outlined" inputRef={taskSummary} value={singleTask.summary} InputLabelProps={{ shrink: true }} onChange={e => setSingleTask({summary: e.target.value})}/>   
@@ -174,7 +171,7 @@ export default function UpdateTask(){
 
           <TextField className={classes.textFieldStyle} id="outlined-full-width" label="Due Date" type="Date" style={{ margin: 15 }} placeholder="Due Date" margin="normal" variant="outlined" InputLabelProps={{ shrink: true }} inputRef={dueDate}  value={singleTask.dueDate} onChange={e => setSingleTask({dueDate: e.target.value})}/>
 
-          <TextField select label="Priority" className={classes.textDateFieldStyle} onChange={handleChange} style={{ margin: 15}} SelectProps={{ native: true }} value={singleTask.priority} InputLabelProps={{ shrink: true }} helperText="Please select task priority" onChange={e => setTaskPriority(e.target.value)} >
+          <TextField select label="Priority" className={classes.textDateFieldStyle} style={{ margin: 15}} SelectProps={{ native: true }} value={taskPriority} InputLabelProps={{ shrink: true }} helperText="Please select task priority" onChange={e => setTaskPriority(e.target.value)} >
             {priority.map((option, index) => (
               <option key={index} value={option.value}>
                 {option.label}
@@ -182,7 +179,7 @@ export default function UpdateTask(){
             ))}
           </TextField>
 
-          <TextField select label="Status" className={classes.textDateFieldStyle} onChange={handleStatus} SelectProps={{ native: true }} style={{ margin: 15}} value={singleTask.status} InputLabelProps={{ shrink: true }} helperText="Please select task status" onChange={e => setTaskStatus(e.target.value)}>
+          <TextField select label="Status" className={classes.textDateFieldStyle} SelectProps={{ native: true }} style={{ margin: 15}} value={taskStatus} InputLabelProps={{ shrink: true }} helperText="Please select task status" onChange={e => setTaskStatus(e.target.value)}>
             {status.map((option, index) => (
               <option key={index} value={option.value}>
                 {option.label}

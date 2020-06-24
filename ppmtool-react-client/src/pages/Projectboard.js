@@ -1,10 +1,11 @@
 import React, { useState, useEffect} from 'react';
 import { Grid, Typography, Button, Paper } from '@material-ui/core';
-import { makeStyles, useTheme } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import axios from 'axios';
 import TaskCard from '../components/TaskCard'
 import { useDispatch } from 'react-redux'
 import { GET_ERRORS } from '../actions/types'
+import { useHistory } from 'react-router-dom'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -55,13 +56,18 @@ const useStyles = makeStyles((theme) => ({
 export default function Projectboard() {
 
   const classes = useStyles();
-  const theme = useTheme();
-  const [projectTasks, setProjectTasks] = useState({})
-  const dispatch = useDispatch()
-  const [error, setError] = useState()
+  const [projectTasks, setProjectTasks] = useState({});
+  const dispatch = useDispatch();
+  const [error, setError] = useState();
+  const jwtToken = localStorage.jwtToken;
+  const history = useHistory();
 
   let url = window.location.pathname;
   let id = url.substring(url.lastIndexOf("/") + 1)
+
+  if(!jwtToken){
+    history.push('/');
+  }
 
   async function getTasks() {
     try{
@@ -104,7 +110,7 @@ export default function Projectboard() {
         <Paper className={classes.outerPaper}>
           <Grid container direction="row" justify="center">
               <Grid container item direction="column" justify="flex-start" alignItems="center" lg ={4} md={12}>  
-                <Paper className={classes.header} style={{backgroundColor: 'grey'}} elevation={3}>To Do</Paper>
+                <Paper className={classes.header} style={{color: 'Green'}} >To Do</Paper>
                 {projectTasks.length !== undefined ? (
                   <>
                     {projectTasks.map( (projectTask, index)  => 
@@ -118,7 +124,7 @@ export default function Projectboard() {
                   </>)}
               </Grid>
             <Grid container item direction="column" justify="flex-start" alignItems="center" lg={4} md={12}>
-              <Paper className={classes.header} style={{backgroundColor: '#FFB833'}} elevation={3}>In Progress</Paper>
+              <Paper className={classes.header} style={{color: '#e1ad01'}} >In Progress</Paper>
                 {projectTasks.length !== undefined ? (
                   <>
                     {projectTasks.map( (projectTask, index)  => 
@@ -132,7 +138,7 @@ export default function Projectboard() {
                   </>)}
             </Grid>
             <Grid container item direction="column" justify="flex-start" alignItems="center" lg={4} md={12}>
-              <Paper className={classes.header} style={{backgroundColor: '#a38068'}} elevation={3}>Completed</Paper>
+              <Paper className={classes.header} style={{color: '#ff2400'}} >Completed</Paper>
               {projectTasks.length !== undefined ? (
                   <>
                     {projectTasks.map( (projectTask, index)  => 

@@ -5,6 +5,7 @@ import axios from 'axios'
 import { GET_ERRORS } from '../actions/types'
 import { useHistory } from 'react-router-dom'
 
+
 const styles = theme => ({
     cardStyle:{
       width: "80%",
@@ -41,6 +42,7 @@ const styles = theme => ({
 const Createproject = (props) => {
 
   const { classes } = props;
+  const jwtToken = localStorage.jwtToken;
   const dispatch = useDispatch()
   const history = useHistory()
   const projectName = useRef();
@@ -54,6 +56,10 @@ const Createproject = (props) => {
     projectIdentifier: ""
   })
 
+  if(!jwtToken){
+    history.push('/')
+  }
+  
   const handleSubmit = () =>{
     const newProject = {
       projectName: projectName.current.value,
@@ -64,10 +70,6 @@ const Createproject = (props) => {
     }
     createProject(newProject);
   }
-
-  // const errors = useSelector(state => ({
-  //   errors: state.errors
-  // }))
 
   useEffect(() => {
     

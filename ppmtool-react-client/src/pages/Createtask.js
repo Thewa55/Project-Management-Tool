@@ -1,7 +1,7 @@
 import React, { useState, useRef } from 'react';
 import { Grid, TextField, Card, Typography, Button } from '@material-ui/core';
 import { useDispatch} from 'react-redux';
-import { makeStyles, useTheme } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import { useHistory } from 'react-router-dom'
 import { GET_ERRORS} from '../actions/types'
 import axios from 'axios';
@@ -91,7 +91,6 @@ const priority = [
 export default function Createtask(){
   
   const classes = useStyles();
-  const theme = useTheme();
   const dispatch = useDispatch()
   const history = useHistory()
   const taskSummary = useRef();
@@ -100,6 +99,11 @@ export default function Createtask(){
   const [taskPriority, setTaskPriority] = useState(3)
   const [taskStatus, setTaskStatus] = useState("To Do")
   const [error, setError] = useState({});
+  const jwtToken = localStorage.jwtToken;
+
+  if(!jwtToken){
+    history.push('/');
+  }
 
   async function createTask(projecttask) {
     let id = getID()
@@ -123,7 +127,6 @@ export default function Createtask(){
       status: taskStatus,
       priority: taskPriority
     }
-    console.log(newTask)
     createTask(newTask)
   }
 
@@ -145,8 +148,6 @@ export default function Createtask(){
     let id = getID();
     history.push(`/projectboard/${id}`);
   }
-  console.log(taskPriority)
-  console.log(taskStatus)
   
   return(
     <Grid container direction="column" justify="flex-start" alignItems="center" spacing={3}>

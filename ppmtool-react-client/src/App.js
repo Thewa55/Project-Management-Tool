@@ -9,6 +9,7 @@ import Updatetask from './pages/Updatetask';
 import Signup from './pages/Signup';
 import Login from './pages/Login';
 import Landing from './pages/Landing'
+import ExpansionPanel from './components/ExpansionPanel'
 import 'typeface-roboto';
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import { Provider } from 'react-redux';
@@ -53,14 +54,10 @@ function App() {
           <Route exact path="/projectboard/:id" component={Projectboard} />
           <Route exact path="/createtask/:id" component={Createtask} />
           <Route exact path="/updatetask/:id/:task_id" component={Updatetask} />
-          {/* <Switch>
-          <SecureRoutes exact path="/dashboard" component={Dashboard} />
-          <SecureRoutes exact path="/createproject" component={Createproject} />
-          <SecureRoutes exact path="/updateproject/:id" component={Updateproject} />
-          <SecureRoutes exact path="/projectboard/:id" component={Projectboard} />
+          <Route exact path="/test" component={ExpansionPanel} />
+          {/* <SecureRoutes exact path="/projectboard/:id" component={Projectboard} />
           <SecureRoutes exact path="/createtask/:id" component={Createtask} />
-          <SecureRoutes exact path="/updatetask/:id/:task_id" component={Updatetask} />
-          </Switch> */}
+          <SecureRoutes exact path="/updatetask/:id/:task_id" component={Updatetask} /> */}
         </div>
       </Router>
     </Provider>

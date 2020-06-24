@@ -4,16 +4,17 @@ import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 import Link from '@material-ui/core/Link';
-import Image from '../assets/images/ProjectManagement.jpg'
+import Image from '../assets/images/ProjectManagement.jpg';
 import { useDispatch } from 'react-redux';
-import { logout } from '../utils/logout'
+import { logout } from '../utils/logout';
+import jwt_decode from 'jwt-decode';
 
 const useStyles = makeStyles((theme) => ({
   mainFeaturedPost: {
     position: 'relative',
     backgroundColor: theme.palette.grey[800],
     color: theme.palette.common.white,
-    marginBottom: theme.spacing(4),
+    marginBottom: theme.spacing(6),
     backgroundImage: `url(${Image})`,
     backgroundSize: 'cover',
     backgroundRepeat: 'no-repeat',
@@ -43,10 +44,14 @@ export default function Landing() {
   const dispatch = useDispatch();
   const jwtToken = localStorage.jwtToken;
   let Landingpage;
+  let decoded = {fullName: ""};
 
   const userLogout = () => {
     dispatch(logout());
-    // window.location.href="/";
+  }
+
+  if(jwtToken){
+    decoded = jwt_decode(jwtToken);
   }
 
   const NotAuthLanding = (
@@ -79,7 +84,7 @@ export default function Landing() {
             Welcome Back
           </Typography>
           <Typography variant="h5" color="inherit" paragraph>
-            
+            {decoded.fullName} would you like to
           </Typography>
           <Link variant="subtitle1" style={{ color: "white"}} href="/dashboard">
             Go back to your dashboard
