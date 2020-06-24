@@ -16,11 +16,11 @@ Make sure terminal is in the "ppmtool-react-client" folder before you run npm i,
 The Java side of the project is built off Maven. Open PPMToolsFullStack in your favorite IDE and Maven should automatically detect the dependencies.
 
 ## #Usage
-This application has built in authentication using JSON web tokens that allows a user to create a project with the ability to update the project and adding tasks associated to the project. The project tasks can be given a priority and status and the user will be given an overview of the tasks on the project task board. 
+This application allows users to create and track their personal projects. Once logged in a custom dashboard greets the user as their projects are laid out. Users can easily navigate around projects, and add tasks to each projects. Each project has a custom project task board that allows for tasks to be set and at what stage they are at as well as their priority.
 
 ## #Technology
 
-### Front End:<br>
+Front End:<br>
 React<br>
 JavaScript<br>
 Material UI<br>

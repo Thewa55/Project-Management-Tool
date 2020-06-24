@@ -4,10 +4,12 @@ import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 import Link from '@material-ui/core/Link';
+import Container from '@material-ui/core/Container'
 import Image from '../assets/images/ProjectManagement.jpg';
 import { useDispatch } from 'react-redux';
 import { logout } from '../utils/logout';
 import jwt_decode from 'jwt-decode';
+import LandingTiles from '../components/LandingTiles'
 
 const useStyles = makeStyles((theme) => ({
   mainFeaturedPost: {
@@ -19,6 +21,7 @@ const useStyles = makeStyles((theme) => ({
     backgroundSize: 'cover',
     backgroundRepeat: 'no-repeat',
     backgroundPosition: 'center',
+    height: 500
   },
   overlay: {
     position: 'absolute',
@@ -106,11 +109,17 @@ export default function Landing() {
 
 
   return (
-    <Paper className={classes.mainFeaturedPost}>
-      {/* Increase the priority of the hero background image */}
-      {<img style={{ display: 'none' }} alt="background" />}
-      <div className={classes.overlay} />
-      {Landingpage}
-    </Paper>
+    <>
+      <Paper className={classes.mainFeaturedPost}>
+        {<img style={{ display: 'none' }} alt="background" />}
+        <div className={classes.overlay} />
+        {Landingpage}
+      </Paper>
+      <Container fixed>
+        <Grid container spacing={4} alignItems="center" justify="center">
+          <LandingTiles />
+        </Grid>
+      </Container>
+    </>
   );
 }
