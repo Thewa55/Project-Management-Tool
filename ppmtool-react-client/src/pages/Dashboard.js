@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Grid, withStyles, Typography, Button } from '@material-ui/core';
+import { Grid, withStyles, Typography, Button, Container } from '@material-ui/core';
 import ProjectItems from "../components/ProjectItems"
 import { useDispatch } from 'react-redux'
 import { GET_PROJECTS } from '../actions/types'
@@ -11,7 +11,7 @@ const styles = theme => ({
       paddingBottom: "2em"
     },
     title: {
-      fontSize: "5em",
+      fontSize: "4em",
       [theme.breakpoints.down("sm")]:{
         fontSize: "3em"
       }
@@ -45,10 +45,11 @@ function Dashboard(props){
   const {classes} = props
 
   return(
-    <div>  
+    <div>
+      <Container fixed>  
       <Grid container direction="row" justify="center" alignItems="center">
         <Typography className={classes.title}>
-          Projects
+          Project Board
         </Typography>
         <Grid container justify="center">
           <Button variant="contained" color="primary" href="/createproject">Create Project</Button>
@@ -59,6 +60,7 @@ function Dashboard(props){
       <Grid container direction="row" justify="center" alignItems="center" className={classes.dashPadding}>
         {allProjects.map(project => (<ProjectItems key={project.id} project={project} />))}
       </Grid>
+      </Container>
     </div>
   )
 }
