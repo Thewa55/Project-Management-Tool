@@ -108,7 +108,7 @@ export default function Landing() {
   return (
     <Paper className={classes.mainFeaturedPost}>
       {/* Increase the priority of the hero background image */}
-      {<img style={{ display: 'none' }} />}
+      {<img style={{ display: 'none' }} alt="background" />}
       <div className={classes.overlay} />
       {Landingpage}
     </Paper>

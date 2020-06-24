@@ -18,7 +18,6 @@ import jwt_decode from 'jwt-decode';
 import setJWTToken from './utils/setJWTToken';
 import { SET_CURRENT_USER } from './actions/types';
 import { logout } from './utils/logout';
-// import SecureRoutes from './utils/SecureRoutes'
 
 
 const jwtToken = localStorage.jwtToken;
@@ -55,9 +54,6 @@ function App() {
           <Route exact path="/createtask/:id" component={Createtask} />
           <Route exact path="/updatetask/:id/:task_id" component={Updatetask} />
           <Route exact path="/test" component={ExpansionPanel} />
-          {/* <SecureRoutes exact path="/projectboard/:id" component={Projectboard} />
-          <SecureRoutes exact path="/createtask/:id" component={Createtask} />
-          <SecureRoutes exact path="/updatetask/:id/:task_id" component={Updatetask} /> */}
         </div>
       </Router>
     </Provider>

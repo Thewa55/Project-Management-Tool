@@ -78,7 +78,7 @@ export default function Navbar() {
   const AuthNavbar = (
       <Grid item xs={12} sm={4} className={classes.gridStyle}>
         <Box flexGrow={1} textAlign="center" style={{fontFamily: "typeface-roboto"}}>
-        <Link to="/signup" className={classes.linkStyle}>
+        <Link to="/dashboard" className={classes.linkStyle}>
             <Button className={classes.buttonStyle} variant="outlined" size="small">
               Dashboard
             </Button>

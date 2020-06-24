@@ -59,21 +59,6 @@ export default function UpdateProject(){
     history.push('/')
   }
 
-  async function getProject() {
-    let url = window.location.pathname;
-    let id = url.substring(url.lastIndexOf("/") + 1)
-    try{
-    const res = await axios.get(`/api/project/${id}/`)
-    dispatch({
-      type: GET_PROJECT,
-      payload: res.data
-    })
-    setSingleProject(res.data)
-    } catch(err){
-      history.push('/')
-    }
-  }
-
   async function updateProject(project) {
     try {
       await axios.post("/api/project/", project)
@@ -91,6 +76,21 @@ export default function UpdateProject(){
     }
   }
 
+  async function getProject() {
+    let url = window.location.pathname;
+    let id = url.substring(url.lastIndexOf("/") + 1)
+    try{
+    const res = await axios.get(`/api/project/${id}/`)
+    dispatch({
+      type: GET_PROJECT,
+      payload: res.data
+    })
+    setSingleProject(res.data)
+    } catch(err){
+      history.push('/')
+    }
+  }
+
   const handleSubmit = () =>{
     const newProject = {
       id: id.current.value,
@@ -100,14 +100,12 @@ export default function UpdateProject(){
       start_Date: projectStart.current.value,
       end_Date: projectEnd.current.value
     }
-    console.log(newProject)
     updateProject(newProject);
   }
 
   useEffect(() => {
     getProject()
   }, [error])
-  console.log(singleProject)
   
   return(
     <Grid container direction="column" justify="flex-start" alignItems="center" spacing={1}>
@@ -121,7 +119,7 @@ export default function UpdateProject(){
 
         <TextField className={classes.textFieldStyle} id="outlined-full-width" label="Project ID" style={{ margin: 10 }} placeholder="Project ID" margin="normal" variant="outlined" inputRef={projectId} InputLabelProps={{ shrink: true }} disabled value={singleProject.projectIdentifier} />
         
-        <TextField className={classes.textFieldStyle} placeholder="MultiLine with rows: 2 and rowsMax: 4" multiline rows={2} rowsMax={4} id="outlined-full-width" label="Project Description" style={{ margin: 10 }} placeholder="Project Description" margin="normal" variant="outlined" inputRef={projectDesc} InputLabelProps={{ shrink: true }} value={singleProject.description} onChange={e => setSingleProject({description: e.target.value})}/>
+        <TextField className={classes.textFieldStyle} multiline rows={2} rowsMax={4} id="outlined-full-width" label="Project Description" style={{ margin: 10 }} placeholder="Project Description" margin="normal" variant="outlined" inputRef={projectDesc} InputLabelProps={{ shrink: true }} value={singleProject.description} onChange={e => setSingleProject({description: e.target.value})}/>
 
         <div className={classes.errorStyle}>{error.description}</div>
 
