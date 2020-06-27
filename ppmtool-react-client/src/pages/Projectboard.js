@@ -6,6 +6,7 @@ import TaskCard from '../components/TaskCard'
 import { useDispatch } from 'react-redux'
 import { GET_ERRORS } from '../actions/types'
 import { useHistory } from 'react-router-dom'
+import ExpansionPanel from '../components/ExpansionPanel'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -115,7 +116,8 @@ export default function Projectboard() {
                   <>
                     {projectTasks.map( (projectTask, index)  => 
                     projectTask.status === "To Do" ? 
-                      (<TaskCard key={index} projectId={id} projectTask={projectTask} />)
+                      (<ExpansionPanel key={index} projectId= {id} projectTask={projectTask} />)
+                      // (<TaskCard key={index} projectId={id} projectTask={projectTask} />)
                     :
                       (<> </>)
                     )}

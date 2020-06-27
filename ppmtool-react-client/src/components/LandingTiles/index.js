@@ -47,7 +47,7 @@ export default function MediaCard() {
           />
           <CardContent>
             <Typography gutterBottom variant="h5" component="h2">
-              Physical notes are a great...
+              Physical notes are great...
             </Typography>
             <Typography variant="body2" color="textSecondary" component="p">
               Wouldn't it be better to take notes with you on the go, with the ability to add and update notes. Life gets busy and we're here to help you focus on things that matter most. 
