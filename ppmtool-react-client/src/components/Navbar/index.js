@@ -7,6 +7,9 @@ import { logout } from '../../utils/logout'
 
 
 const useStyles = makeStyles((theme) => ({
+  boxStyle:{
+    marginBottom: '1em'
+  },
     gridStyle:{
       [theme.breakpoints.down("xs")]:{
         justifyContent: "center"
@@ -100,7 +103,7 @@ export default function Navbar() {
 
 
   return(
-    <Box display="flex" bgcolor="grey.200" alignItems="center">
+    <Box display="flex" bgcolor="grey.200" alignItems="center" className={classes.boxStyle}>
       <Grid container className={classes.gridStyle} direction="row" justify="center" alignItems="center">
         <Grid item xs={12} sm={8}>
           <Link className={classes.linkStyle} to="/">

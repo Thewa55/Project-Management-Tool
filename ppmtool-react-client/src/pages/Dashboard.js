@@ -11,10 +11,8 @@ const styles = theme => ({
       paddingBottom: "2em"
     },
     title: {
-      fontSize: "4em",
-      [theme.breakpoints.down("sm")]:{
-        fontSize: "3em"
-      }
+      fontSize: "2em",
+      marginRight: '1em'
     } 
 })
 
@@ -47,19 +45,16 @@ function Dashboard(props){
   return(
     <div>
       <Container fixed>  
-      <Grid container direction="row" justify="center" alignItems="center">
-        <Typography className={classes.title}>
-          Project Board
-        </Typography>
-        <Grid container justify="center">
+        <Grid container direction="row" justify="center" alignItems="center">
+          <Typography className={classes.title}>
+            Project Board
+          </Typography>
           <Button variant="contained" color="primary" href="/createproject">Create Project</Button>
         </Grid>
-      </Grid>
-
-      <hr style={{width: "80%"}}/>
-      <Grid container direction="row" justify="center" alignItems="center" className={classes.dashPadding}>
-        {allProjects.map(project => (<ProjectItems key={project.id} project={project} />))}
-      </Grid>
+        <hr style={{width: "80%"}}/>
+        <Grid container direction="row" justify="center" alignItems="center" className={classes.dashPadding}>
+          {allProjects.map(project => (<ProjectItems key={project.id} project={project} />))}
+        </Grid>
       </Container>
     </div>
   )

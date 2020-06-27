@@ -12,11 +12,8 @@ const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1
   },
-  boardStyling: {
-    marginTop: theme.spacing(3)
-  },
   title: {
-    fontSize: "3em",
+    fontSize: "2em",
     [theme.breakpoints.down("sm")]:{
       fontSize: "2em",
       textAlign: "center"
@@ -25,7 +22,6 @@ const useStyles = makeStyles((theme) => ({
   outerPaper:{
     width: "90%",
     paddingBottom: "2em",
-    marginTop: "1em"
   },
   paper:{
     margin: "1em",
@@ -34,7 +30,6 @@ const useStyles = makeStyles((theme) => ({
   },
   header: {
     width: "85%",
-    marginTop: "1em",
     fontSize: "2em",
     padding: ".5em",
     textAlign: "center",
@@ -45,10 +40,9 @@ const useStyles = makeStyles((theme) => ({
     }
   },
   buttonStyle: {
-    padding: "1em",
+    marginLeft: "2em",
     [theme.breakpoints.down("sm")]:{
       marginTop: ".5em",
-      padding: ".5em"
     }
   }
 }));
@@ -101,13 +95,12 @@ export default function Projectboard() {
   return(
     <div className={classes.root}>
       { !error ? (
-      <Grid container direction="row" justify="center" alignItems="center" className={classes.boardStyling}>
-        <Typography className={classes.title}>
+      <Grid container direction="row" justify="center" alignItems="center">
+          <Typography className={classes.title}>
             {id} Project Board
-        </Typography>
-        <Grid container justify="center">
+          </Typography>
           <Button className={classes.buttonStyle} variant="contained" color="primary" href={`/createtask/${id}`}>Create Project Task</Button>
-        </Grid>
+        <hr style={{width: "90%"}}/>
         <Paper className={classes.outerPaper}>
           <Grid container direction="row" justify="center">
               <Grid container item direction="column" justify="flex-start" alignItems="center" lg ={4} md={12}>  
@@ -131,7 +124,7 @@ export default function Projectboard() {
                   <>
                     {projectTasks.map( (projectTask, index)  => 
                     projectTask.status === "In Progress" ? 
-                      (<TaskCard key={index} projectId={id} projectTask={projectTask} />)
+                      (<ExpansionPanel key={index} projectId= {id} projectTask={projectTask} />)
                     :
                       (<> </>)
                     )}
@@ -145,7 +138,7 @@ export default function Projectboard() {
                   <>
                     {projectTasks.map( (projectTask, index)  => 
                     projectTask.status === "Completed" ? 
-                      (<TaskCard key={index} projectId={id} projectTask={projectTask} />)
+                      (<ExpansionPanel key={index} projectId= {id} projectTask={projectTask} />)
                     :
                       (<> </>)
                     )}

@@ -107,8 +107,9 @@ export default function DeleteModal(props) {
       <Modal
         open={open}
         onClose={handleClose}
-        aria-labelledby="simple-modal-title"
-        aria-describedby="simple-modal-description"
+        aria-labelledby="Delete-task"
+        aria-describedby="Delete-task"
+        style={{outline: "0"}}
       >
         {body}
       </Modal>
