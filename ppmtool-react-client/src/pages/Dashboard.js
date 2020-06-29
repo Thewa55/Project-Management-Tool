@@ -44,10 +44,10 @@ function Dashboard(props){
 
   return(
     <div>
-      <Container fixed>  
+      <Container >  
         <Grid container direction="row" justify="center" alignItems="center">
           <Typography className={classes.title}>
-            Project Board
+            Project DashBoard
           </Typography>
           <Button variant="contained" color="primary" href="/createproject">Create Project</Button>
         </Grid>

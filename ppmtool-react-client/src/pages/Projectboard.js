@@ -97,7 +97,7 @@ export default function Projectboard() {
       { !error ? (
       <Grid container direction="row" justify="center" alignItems="center">
           <Typography className={classes.title}>
-            {id} Project Board
+            {id}'s Task Board
           </Typography>
           <Button className={classes.buttonStyle} variant="contained" color="primary" href={`/createtask/${id}`}>Create Project Task</Button>
         <hr style={{width: "90%"}}/>

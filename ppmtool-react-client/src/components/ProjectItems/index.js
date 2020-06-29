@@ -10,7 +10,9 @@ const useStyles = makeStyles((theme) => ({
     // height: '10em',
     marginTop: '1em',
     [theme.breakpoints.down("sm")]:{
-      height: '15em'
+      height: '15em',
+      width: '100%'
+
     }
   },
   details: {

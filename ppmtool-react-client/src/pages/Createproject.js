@@ -7,20 +7,23 @@ import { useHistory } from 'react-router-dom'
 
 
 const styles = theme => ({
-    formStyle:{
-      width: '100%',
-      marginTop: theme.spacing(1),
-    },
-    typographyStyle:{
-      textAlign: "center"
-    },
-    errorStyle:{
-      color: "red",
-      fontSize: "1em",
-      textAlign: "left",
-      paddingTop: '0',
-      paddingBotttom: '0'
-    },
+  paper: {
+    marginTop: theme.spacing(6),
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+  },
+  formStyle:{
+    width: '100%',
+    marginTop: theme.spacing(1),
+  },
+  errorStyle:{
+    color: "red",
+    fontSize: "1em",
+    textAlign: "left",
+    paddingTop: '0',
+    paddingBotttom: '0'
+  },
 })
 
 const Createproject = (props) => {
@@ -79,8 +82,9 @@ const Createproject = (props) => {
   console.log(error)
 
   return(
-    <Container maxWidth="sm">
+    <Container container component="main" maxWidth="sm" className={classes.root}>
       <CssBaseline />
+      <div className={classes.paper}>
       <Grid container direction="column" justify="flex-start" alignItems="center" spacing={1} >
       <Typography component="h1" variant="h5">
           Create Project
@@ -88,11 +92,11 @@ const Createproject = (props) => {
           <form noValidate autoComplete="off" className={classes.formStyle}>
           <Grid container spacing={2} className={classes.textfield}>
             <Grid item xs={12} style={{paddingTop: '0', paddingBottom: '0'}}>
-              <TextField label="Project Name" fullWidth placeholder="Project Name" margin="normal" variant="outlined" inputRef={projectName} />
+              <TextField label="Project Name*" fullWidth placeholder="Project Name" margin="normal" autoFocus variant="outlined" inputRef={projectName} />
               <div className={classes.errorStyle}>{error.projectName}</div>
             </Grid>
             <Grid item xs={12} style={{paddingTop: '0', paddingBottom: '0'}}>
-              <TextField fullWidth id="outlined-full-width" label="Project ID" placeholder="Project ID" margin="normal" variant="outlined" inputRef={projectId}/>
+              <TextField fullWidth id="outlined-full-width" label="Project ID*  (Unique and can't be updated in the future)" placeholder="Project ID" margin="normal" variant="outlined" inputRef={projectId}/>
               <div className={classes.errorStyle}>{error.projectIdentifier}</div>
             </Grid>
             <Grid item xs={12} style={{paddingTop: '0', paddingBottom: '0'}}>
@@ -111,6 +115,7 @@ const Createproject = (props) => {
           </Grid>
           </form>
       </Grid>
+      </div>
     </Container>
   )
 }
