@@ -8,8 +8,8 @@ import { useHistory } from 'react-router-dom'
 
 const styles = theme => ({
     formStyle:{
-      alignItems: "center",
-      textAlign: "center"
+      width: '100%',
+      marginTop: theme.spacing(1),
     },
     typographyStyle:{
       textAlign: "center"
@@ -20,7 +20,7 @@ const styles = theme => ({
       textAlign: "left",
       paddingTop: '0',
       paddingBotttom: '0'
-    }
+    },
 })
 
 const Createproject = (props) => {
@@ -82,38 +82,27 @@ const Createproject = (props) => {
     <Container maxWidth="sm">
       <CssBaseline />
       <Grid container direction="column" justify="flex-start" alignItems="center" spacing={1} >
-          <Typography variant="h2" className={classes.typographyStyle}>Create Project</Typography>
+      <Typography component="h1" variant="h5">
+          Create Project
+        </Typography>
           <form noValidate autoComplete="off" className={classes.formStyle}>
-          <Grid container spacing={2}>
-            <Grid item xs={12} >
+          <Grid container spacing={2} className={classes.textfield}>
+            <Grid item xs={12} style={{paddingTop: '0', paddingBottom: '0'}}>
               <TextField label="Project Name" fullWidth placeholder="Project Name" margin="normal" variant="outlined" inputRef={projectName} />
-            </Grid>
-            {error.projectName === "" ? (<> 
-            </>):
-            (<Grid item xs={12}>
               <div className={classes.errorStyle}>{error.projectName}</div>
-            </Grid>)
-            }
-            <Grid item xs={12}>
+            </Grid>
+            <Grid item xs={12} style={{paddingTop: '0', paddingBottom: '0'}}>
               <TextField fullWidth id="outlined-full-width" label="Project ID" placeholder="Project ID" margin="normal" variant="outlined" inputRef={projectId}/>
+              <div className={classes.errorStyle}>{error.projectIdentifier}</div>
             </Grid>
-            {error.projectIdentifier === "" ? (
-              <> </>
-              ) : (
-              <Grid item xs={12}>
-                <div className={classes.errorStyle}>{error.projectIdentifier}</div>
-              </Grid>)
-            }
-            <Grid item xs={12}>
+            <Grid item xs={12} style={{paddingTop: '0', paddingBottom: '0'}}>
               <TextField fullWidth multiline rows={2} rowsMax={4} id="outlined-full-width" label="Project Description" placeholder="Project Description" margin="normal" variant="outlined" inputRef={projectDesc} />
-            </Grid>
-            <Grid item xs={12}>
               <div className={classes.errorStyle}>{error.description}</div>
             </Grid>
-            <Grid item xs={6}>
+            <Grid item xs={12} md={6} style={{paddingTop: '0', paddingBottom: '0'}}>
               <TextField fullWidth id="outlined-full-width" label="Start Date" type="Date" placeholder="Project Name" margin="normal" variant="outlined" InputLabelProps={{ shrink: true }} inputRef={projectStart} />
             </Grid>
-            <Grid item xs={6}>
+            <Grid item xs={12} md={6} style={{paddingTop: '0', paddingBottom: '0'}}>
               <TextField  fullWidth id="outlined-full-width" label="End Date" type="Date" placeholder="Project Name" margin="normal" variant="outlined" InputLabelProps={{ shrink: true }} inputRef={projectEnd} />
             </Grid>
             <Grid item xs={12}>
