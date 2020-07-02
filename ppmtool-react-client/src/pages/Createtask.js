@@ -1,5 +1,6 @@
 import React, { useState, useRef } from 'react';
-import { Grid, TextField, Card, Typography, Button } from '@material-ui/core';
+import { Grid, TextField, Typography, Button, Container, CssBaseline, Avatar } from '@material-ui/core';
+import AssignmentOutlinedIcon from '@material-ui/icons/AssignmentOutlined';
 import { useDispatch} from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
 import { useHistory } from 'react-router-dom'
@@ -8,46 +9,26 @@ import axios from 'axios';
 
 
 const useStyles = makeStyles((theme) => ({
-    cardStyle:{
-      width: "80%",
-      marginTop: theme.spacing(6),
-      paddingBottom: "3em"
-    },
-    textFieldStyle:{
-      width: "90%",
-    },
-    textDateFieldStyle:{
-        width: "44%",
-        [theme.breakpoints.down("sm")]:{
-            width: '90%',
-            marginTop: '.7em'
-        }
-    },
-    formStyle:{
-      alignItems: "center",
-      textAlign: "center"
-    },
-    typographyStyle:{
-      textAlign: "center",
-      [theme.breakpoints.down("sm")]:{
-        fontSize: "2em",
-        marginTop: ".5em"
-    }
-    },
-    buttonStyle:{
-      padding: "1em",
-      width: "44%",
-      [theme.breakpoints.down("sm")]:{
-          width: '90%',
-          marginTop: '.7em'
-      }
-    },
-    errorStyle:{
-      color: "red",
-      fontSize: "1em",
-      textAlign: "left",
-      marginLeft: "5%"
-    }
+  paper: {
+    marginTop: theme.spacing(6),
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+  },
+  avatar: {
+    margin: theme.spacing(2),
+    backgroundColor: theme.palette.secondary.main,
+  },
+  form: {
+    width: '100%',
+    marginTop: theme.spacing(3),
+  },
+  errorStyle:{
+    color: "red",
+    fontSize: "1em",
+    textAlign: "left",
+    marginLeft: "5%"
+  }
 }))
 
 const status = [
@@ -137,38 +118,47 @@ export default function Createtask(){
   }
   
   return(
-    <Grid container direction="column" justify="flex-start" alignItems="center" spacing={3}>
-    <Card className={classes.cardStyle}>
-      <Typography variant="h2" className={classes.typographyStyle}>Create Project Task</Typography>
-      <form noValidate autoComplete="off" className={classes.formStyle}>
-        <TextField className={classes.textFieldStyle} label="Task Summary" style={{ margin: 10 }} placeholder="Task Summary" margin="normal" variant="outlined" inputRef={taskSummary} />   
-        
-        <div className={classes.errorStyle}>{error.projectName}</div>
-
-        <TextField className={classes.textFieldStyle} multiline rows={2} rowsMax={4} id="outlined-full-width" label="Task Criteria" style={{ margin: 10 }} placeholder="Task Criteria" margin="normal" variant="outlined" inputRef={taskCriteria}/>
-
-        <div className={classes.errorStyle}>{error.description}</div>
-
-        <TextField className={classes.textFieldStyle} id="outlined-full-width" label="Due Date" type="Date" style={{ margin: 15 }} placeholder="Due Date" margin="normal" variant="outlined" InputLabelProps={{ shrink: true }} inputRef={dueDate} />
-
-        <TextField select label="Priority" className={classes.textDateFieldStyle} onChange={handleChange} style={{ margin: 15}} SelectProps={{ native: true }} InputLabelProps={{ shrink: true }} helperText="Please select task priority">
-          {priority.map((option, index) => (
-            <option key={index} value={option.value}>
-              {option.label}
-            </option>
-          ))}
-        </TextField>
-        <TextField select label="Status" className={classes.textDateFieldStyle} onChange={handleStatus} SelectProps={{ native: true }} style={{ margin: 15}} InputLabelProps={{ shrink: true }} helperText="Please select task status">
-          {status.map((option, index) => (
-            <option key={index} value={option.value}>
-              {option.value}
-            </option>
-          ))}
-        </TextField>
-        <Button className={classes.buttonStyle} style={{ margin: 15, }} variant="contained" color="primary" onClick={handleSubmit}>Submit</Button>
-        <Button className={classes.buttonStyle} style={{ margin: 15, }} variant="contained" color="secondary" onClick={handleCancel}>Cancel</Button>
-      </form>
-    </Card>
-  </Grid>
+    <Container container component="main" maxWidth="sm">
+      <CssBaseline />
+      <div className={classes.paper}>
+        <Grid container direction="column" justify="flex-start" alignItems="center" spacing={1} >
+          <Avatar className={classes.avatar}>
+            <AssignmentOutlinedIcon />
+          </Avatar>
+          <Typography component="h1" variant="h5">Create Task</Typography>
+          <form noValidate autoComplete="off" className={classes.formStyle}>
+            <Grid container spacing={2}>
+              <Grid item xs={12} style={{paddingTop: '0', paddingBottom: '0'}}>
+                <TextField fullWidth label="Task Summary*" placeholder="Task Summary" margin="normal" variant="outlined" inputRef={taskSummary} />   
+                <div className={classes.errorStyle}>{error.projectName}</div>
+              </Grid>
+              <Grid item xs={12} style={{paddingTop: '0', paddingBottom: '0'}}>
+                <TextField fullWidth multiline rows={2} rowsMax={4} id="outlined-full-width" label="Task Criteria*"placeholder="Task Criteria" margin="normal" variant="outlined" inputRef={taskCriteria}/>
+                <div className={classes.errorStyle}>{error.description}</div>
+              </Grid>
+              <Grid item xs={12} style={{paddingTop: '0', paddingBottom: '0'}}>
+                <TextField fullWidth id="outlined-full-width" label="Due Date" type="Date" placeholder="Due Date" margin="normal" variant="outlined" InputLabelProps={{ shrink: true }} inputRef={dueDate} />
+              </Grid>
+              <Grid item xs={12} md={6} style={{paddingTop: '0'}}>
+                <TextField select label="Priority" fullWidth onChange={handleChange} SelectProps={{ native: true }} InputLabelProps={{ shrink: true }} helperText="Please select task priority">
+                  {priority.map((option, index) => ( <option key={index} value={option.value}> {option.label} </option> ))}
+                </TextField>
+              </Grid>
+              <Grid item xs={12} md={6} style={{paddingTop: '0'}}>
+                <TextField select label="Status" fullWidth onChange={handleStatus} SelectProps={{ native: true }} InputLabelProps={{ shrink: true }} helperText="Please select task status">
+                  {status.map((option, index) => ( <option key={index} value={option.value}> {option.value} </option> ))}
+                </TextField>
+              </Grid>
+              <Grid item xs={6}>
+                <Button fullWidth style={{marginBottom: '3em'}} variant="contained" color="primary" onClick={handleSubmit}>Submit</Button>
+              </Grid>
+              <Grid item xs={6}>
+                <Button fullWidth style={{marginBottom: '3em'}} variant="contained" color="secondary" onClick={handleCancel}>Cancel</Button>
+              </Grid>
+            </Grid>
+          </form>
+        </Grid>
+      </div>
+    </Container>
   )
 }

@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Grid, TextField, Card, Typography, Button, Container, CssBaseline, Avatar } from '@material-ui/core';
+import { Grid, TextField, Typography, Button, Container, CssBaseline, Avatar } from '@material-ui/core';
 import { useDispatch } from 'react-redux';
 import { GET_PROJECT, GET_ERRORS } from '../actions/types';
 import { makeStyles } from '@material-ui/core/styles';

@@ -94,9 +94,7 @@ const Createproject = (props) => {
           <Avatar className={classes.avatar}>
             <AssignmentOutlinedIcon />
           </Avatar>
-          <Typography component="h1" variant="h5">
-            Create Project
-          </Typography>
+          <Typography component="h1" variant="h5">Create Project</Typography>
           <form noValidate autoComplete="off" className={classes.formStyle}>
             <Grid container spacing={2}>
               <Grid item xs={12} style={{paddingTop: '0', paddingBottom: '0'}}>
