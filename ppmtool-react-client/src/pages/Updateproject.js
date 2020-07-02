@@ -1,10 +1,11 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Grid, TextField, Card, Typography, Button, Container, CssBaseline } from '@material-ui/core';
+import { Grid, TextField, Card, Typography, Button, Container, CssBaseline, Avatar } from '@material-ui/core';
 import { useDispatch } from 'react-redux';
 import { GET_PROJECT, GET_ERRORS } from '../actions/types';
 import { makeStyles } from '@material-ui/core/styles';
 import { useHistory } from 'react-router-dom'
 import axios from 'axios';
+import UpdateOutlinedIcon from '@material-ui/icons/UpdateOutlined';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -24,6 +25,10 @@ const useStyles = makeStyles((theme) => ({
     textAlign: "left",
     paddingTop: '0',
     paddingBotttom: '0'
+  },
+  avatar: {
+    margin: theme.spacing(2),
+    backgroundColor: theme.palette.primary.main,
   },
 }))
 
@@ -98,6 +103,9 @@ export default function UpdateProject(){
     <Container container component="main" maxWidth="sm" className={classes.root}>
       <CssBaseline />
       <div className={classes.paper}>
+        <Avatar className={classes.avatar}>
+          <UpdateOutlinedIcon />
+        </Avatar>
         <Typography component="h1" variant="h5"> Update Project</Typography>
         <form noValidate autoComplete="off" className={classes.formStyle}>
           <Grid container spacing={2}>
@@ -119,7 +127,9 @@ export default function UpdateProject(){
               <Grid item xs={12} md={6} style={{paddingTop: '0', paddingBottom: '0'}}>
                 <TextField fullWidth id="outlined-full-width" label="End Date" type="Date" placeholder="Project Name" margin="normal" variant="outlined" InputLabelProps={{ shrink: true }} inputRef={projectEnd} value={singleProject.end_Date} onChange={e => setSingleProject({end_Date: e.target.value})}/>
               </Grid>
-            <Button className={classes.buttonStyle} style={{ margin: 15, marginBottom: "3em"}} variant="contained" color="primary" onClick={handleSubmit}>Submit</Button>
+              <Grid item xs={12}>
+              <Button fullWidth style={{ marginBottom: "3em" }} variant="contained" color="primary" onClick={handleSubmit}>Submit</Button>
+            </Grid>
           </Grid>
         </form>
       </div>

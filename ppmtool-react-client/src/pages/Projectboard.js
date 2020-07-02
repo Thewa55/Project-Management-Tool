@@ -2,7 +2,6 @@ import React, { useState, useEffect} from 'react';
 import { Grid, Typography, Button, Paper } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import axios from 'axios';
-import TaskCard from '../components/TaskCard'
 import { useDispatch } from 'react-redux'
 import { GET_ERRORS } from '../actions/types'
 import { useHistory } from 'react-router-dom'
@@ -33,7 +32,6 @@ const useStyles = makeStyles((theme) => ({
     fontSize: "2em",
     padding: ".5em",
     textAlign: "center",
-    color: "white",
     [theme.breakpoints.down("sm")]:{
         fontSize: "1.5em",
         padding: ".5em"
@@ -104,7 +102,7 @@ export default function Projectboard() {
         <Paper className={classes.outerPaper}>
           <Grid container direction="row" justify="center">
               <Grid container item direction="column" justify="flex-start" alignItems="center" lg ={4} md={12}>  
-                <Paper className={classes.header} style={{color: 'Green'}} >To Do</Paper>
+                <Paper className={classes.header} >To Do</Paper>
                 {projectTasks.length !== undefined ? (
                   <>
                     {projectTasks.map( (projectTask, index)  => 
@@ -119,7 +117,7 @@ export default function Projectboard() {
                   </>)}
               </Grid>
             <Grid container item direction="column" justify="flex-start" alignItems="center" lg={4} md={12}>
-              <Paper className={classes.header} style={{color: '#e1ad01'}} >In Progress</Paper>
+              <Paper className={classes.header}>In Progress</Paper>
                 {projectTasks.length !== undefined ? (
                   <>
                     {projectTasks.map( (projectTask, index)  => 
@@ -133,7 +131,7 @@ export default function Projectboard() {
                   </>)}
             </Grid>
             <Grid container item direction="column" justify="flex-start" alignItems="center" lg={4} md={12}>
-              <Paper className={classes.header} style={{color: '#ff2400'}} >Completed</Paper>
+              <Paper className={classes.header}>Completed</Paper>
               {projectTasks.length !== undefined ? (
                   <>
                     {projectTasks.map( (projectTask, index)  => 

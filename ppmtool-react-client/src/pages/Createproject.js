@@ -1,5 +1,6 @@
 import React, { useRef, useState, useEffect } from 'react'
-import { Grid, TextField, Card, Container, Typography, Button, withStyles, CssBaseline } from '@material-ui/core';
+import { Grid, TextField, Card, Container, Typography, Button, withStyles, CssBaseline, Avatar } from '@material-ui/core';
+import AssignmentOutlinedIcon from '@material-ui/icons/AssignmentOutlined';
 import { useDispatch } from 'react-redux'
 import axios from 'axios'
 import { GET_ERRORS } from '../actions/types'
@@ -23,6 +24,10 @@ const styles = theme => ({
     textAlign: "left",
     paddingTop: '0',
     paddingBotttom: '0'
+  },
+  avatar: {
+    margin: theme.spacing(2),
+    backgroundColor: theme.palette.primary.main,
   },
 })
 
@@ -86,6 +91,9 @@ const Createproject = (props) => {
       <CssBaseline />
       <div className={classes.paper}>
         <Grid container direction="column" justify="flex-start" alignItems="center" spacing={1} >
+          <Avatar className={classes.avatar}>
+            <AssignmentOutlinedIcon />
+          </Avatar>
           <Typography component="h1" variant="h5">
             Create Project
           </Typography>
