@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Grid, TextField, Card, Typography, Button } from '@material-ui/core';
+import { Grid, TextField, Card, Typography, Button, Container, CssBaseline } from '@material-ui/core';
 import { useDispatch } from 'react-redux';
 import { GET_PROJECT, GET_ERRORS } from '../actions/types';
 import { makeStyles } from '@material-ui/core/styles';
@@ -8,36 +8,23 @@ import axios from 'axios';
 
 
 const useStyles = makeStyles((theme) => ({
-    cardStyle:{
-      width: "80%",
-      marginTop: theme.spacing(6)
-    },
-    textFieldStyle:{
-      width: "90%",
-    },
-    textDateFieldStyle:{
-        width: "44%",
-        [theme.breakpoints.down("sm")]:{
-            width: '90%'
-        }
-    },
-    formStyle:{
-      alignItems: "center",
-      textAlign: "center"
-    },
-    typographyStyle:{
-      textAlign: "center"
-    },
-    buttonStyle:{
-      width: "90%",
-      padding: "1em"
-    },
-    errorStyle:{
-      color: "red",
-      fontSize: "1em",
-      textAlign: "left",
-      marginLeft: "5%"
-    }
+  paper: {
+    marginTop: theme.spacing(6),
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+  },
+  formStyle:{
+    width: '100%',
+    marginTop: theme.spacing(1),
+  },
+  errorStyle:{
+    color: "red",
+    fontSize: "1em",
+    textAlign: "left",
+    paddingTop: '0',
+    paddingBotttom: '0'
+  },
 }))
 
 export default function UpdateProject(){
@@ -108,28 +95,34 @@ export default function UpdateProject(){
   }, [error])
   
   return(
-    <Grid container direction="column" justify="flex-start" alignItems="center" spacing={1}>
-    <Card className={classes.cardStyle}>
-      <Typography variant="h2" className={classes.typographyStyle}>Update Project</Typography>
-      <form noValidate autoComplete="off" className={classes.formStyle}>
-        <TextField style={{visibility: "hidden"}} inputRef={id} value={singleProject.id}></TextField>
-        <TextField className={classes.textFieldStyle} label="Project Name" style={{ margin: 10 }} placeholder="Project Name" value={singleProject.projectName } margin="normal" variant="outlined" inputRef={projectName} InputLabelProps={{ shrink: true }} onChange={e => setSingleProject({projectName: e.target.value})}/>   
-        
-        <div className={classes.errorStyle}>{error.projectName}</div>
-
-        <TextField className={classes.textFieldStyle} id="outlined-full-width" label="Project ID" style={{ margin: 10 }} placeholder="Project ID" margin="normal" variant="outlined" inputRef={projectId} InputLabelProps={{ shrink: true }} disabled value={singleProject.projectIdentifier} />
-        
-        <TextField className={classes.textFieldStyle} multiline rows={2} rowsMax={4} id="outlined-full-width" label="Project Description" style={{ margin: 10 }} placeholder="Project Description" margin="normal" variant="outlined" inputRef={projectDesc} InputLabelProps={{ shrink: true }} value={singleProject.description} onChange={e => setSingleProject({description: e.target.value})}/>
-
-        <div className={classes.errorStyle}>{error.description}</div>
-
-        <TextField className={classes.textDateFieldStyle} id="outlined-full-width" label="Start Date" type="Date" style={{ margin: 15 }} placeholder="Project Name" margin="normal" variant="outlined" InputLabelProps={{ shrink: true }} inputRef={projectStart} value={singleProject.start_Date} onChange={e => setSingleProject({start_Date: e.target.value})} />
-
-        <TextField className={classes.textDateFieldStyle} id="outlined-full-width" label="End Date" type="Date" style={{ margin: 15}} placeholder="Project Name" margin="normal" variant="outlined" InputLabelProps={{ shrink: true }} inputRef={projectEnd} value={singleProject.end_Date} onChange={e => setSingleProject({end_Date: e.target.value})}/>
-
-        <Button className={classes.buttonStyle} style={{ margin: 15, marginBottom: "3em"}} variant="contained" color="primary" onClick={handleSubmit}>Submit</Button>
-      </form>
-    </Card>
-  </Grid>
+    <Container container component="main" maxWidth="sm" className={classes.root}>
+      <CssBaseline />
+      <div className={classes.paper}>
+        <Typography component="h1" variant="h5"> Update Project</Typography>
+        <form noValidate autoComplete="off" className={classes.formStyle}>
+          <Grid container spacing={2}>
+              <TextField style={{visibility: "hidden"}} inputRef={id} value={singleProject.id}></TextField>
+              <Grid item xs={12} style={{paddingTop: '0', paddingBottom: '0'}}>
+                <TextField autoFocus label="Project Name" fullWidth placeholder="Project Name" value={singleProject.projectName } margin="normal" variant="outlined" inputRef={projectName} InputLabelProps={{ shrink: true }} onChange={e => setSingleProject({projectName: e.target.value})}/>               
+                <div className={classes.errorStyle}>{error.projectName}</div>
+              </Grid>
+              <Grid item xs={12} style={{paddingTop: '0', paddingBottom: '0'}}>
+                <TextField fullWidth id="outlined-full-width" label="Project ID" placeholder="Project ID" margin="normal" variant="outlined" inputRef={projectId} InputLabelProps={{ shrink: true }} disabled value={singleProject.projectIdentifier} />
+              </Grid>
+              <Grid item xs={12} style={{paddingTop: '0', paddingBottom: '0'}}>
+                <TextField fullWidth multiline rows={2} rowsMax={4} id="outlined-full-width" label="Project Description" placeholder="Project Description" margin="normal" variant="outlined" inputRef={projectDesc} InputLabelProps={{ shrink: true }} value={singleProject.description} onChange={e => setSingleProject({description: e.target.value})}/>
+                <div className={classes.errorStyle}>{error.description}</div>
+              </Grid>
+              <Grid item xs={12} md={6} style={{paddingTop: '0', paddingBottom: '0'}}>
+                <TextField fullWidth id="outlined-full-width" label="Start Date" type="Date" placeholder="Project Name" margin="normal" variant="outlined" InputLabelProps={{ shrink: true }} inputRef={projectStart} value={singleProject.start_Date} onChange={e => setSingleProject({start_Date: e.target.value})} />
+              </Grid>
+              <Grid item xs={12} md={6} style={{paddingTop: '0', paddingBottom: '0'}}>
+                <TextField fullWidth id="outlined-full-width" label="End Date" type="Date" placeholder="Project Name" margin="normal" variant="outlined" InputLabelProps={{ shrink: true }} inputRef={projectEnd} value={singleProject.end_Date} onChange={e => setSingleProject({end_Date: e.target.value})}/>
+              </Grid>
+            <Button className={classes.buttonStyle} style={{ margin: 15, marginBottom: "3em"}} variant="contained" color="primary" onClick={handleSubmit}>Submit</Button>
+          </Grid>
+        </form>
+      </div>
+  </Container>
   )
 }

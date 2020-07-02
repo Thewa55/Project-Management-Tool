@@ -82,39 +82,39 @@ const Createproject = (props) => {
   console.log(error)
 
   return(
-    <Container container component="main" maxWidth="sm" className={classes.root}>
+    <Container container component="main" maxWidth="sm">
       <CssBaseline />
       <div className={classes.paper}>
-      <Grid container direction="column" justify="flex-start" alignItems="center" spacing={1} >
-      <Typography component="h1" variant="h5">
-          Create Project
-        </Typography>
+        <Grid container direction="column" justify="flex-start" alignItems="center" spacing={1} >
+          <Typography component="h1" variant="h5">
+            Create Project
+          </Typography>
           <form noValidate autoComplete="off" className={classes.formStyle}>
-          <Grid container spacing={2} className={classes.textfield}>
-            <Grid item xs={12} style={{paddingTop: '0', paddingBottom: '0'}}>
-              <TextField label="Project Name*" fullWidth placeholder="Project Name" margin="normal" autoFocus variant="outlined" inputRef={projectName} />
-              <div className={classes.errorStyle}>{error.projectName}</div>
+            <Grid container spacing={2}>
+              <Grid item xs={12} style={{paddingTop: '0', paddingBottom: '0'}}>
+                <TextField label="Project Name*" fullWidth placeholder="Project Name" margin="normal" autoFocus variant="outlined" inputRef={projectName} />
+                <div className={classes.errorStyle}>{error.projectName}</div>
+              </Grid>
+              <Grid item xs={12} style={{paddingTop: '0', paddingBottom: '0'}}>
+                <TextField fullWidth id="outlined-full-width" label="Project ID*  (Unique and can't be updated in the future)" placeholder="Project ID" margin="normal" variant="outlined" inputRef={projectId}/>
+                <div className={classes.errorStyle}>{error.projectIdentifier}</div>
+              </Grid>
+              <Grid item xs={12} style={{paddingTop: '0', paddingBottom: '0'}}>
+                <TextField fullWidth multiline rows={2} rowsMax={4} id="outlined-full-width" label="Project Description" placeholder="Project Description" margin="normal" variant="outlined" inputRef={projectDesc} />
+                <div className={classes.errorStyle}>{error.description}</div>
+              </Grid>
+              <Grid item xs={12} md={6} style={{paddingTop: '0', paddingBottom: '0'}}>
+                <TextField fullWidth id="outlined-full-width" label="Start Date" type="Date" placeholder="Project Name" margin="normal" variant="outlined" InputLabelProps={{ shrink: true }} inputRef={projectStart} />
+              </Grid>
+              <Grid item xs={12} md={6} style={{paddingTop: '0', paddingBottom: '0'}}>
+                <TextField  fullWidth id="outlined-full-width" label="End Date" type="Date" placeholder="Project Name" margin="normal" variant="outlined" InputLabelProps={{ shrink: true }} inputRef={projectEnd} />
+              </Grid>
+              <Grid item xs={12}>
+                <Button fullWidth style={{ marginBottom: "3em" }} variant="contained" color="primary" onClick={handleSubmit}>Submit</Button>
+              </Grid>
             </Grid>
-            <Grid item xs={12} style={{paddingTop: '0', paddingBottom: '0'}}>
-              <TextField fullWidth id="outlined-full-width" label="Project ID*  (Unique and can't be updated in the future)" placeholder="Project ID" margin="normal" variant="outlined" inputRef={projectId}/>
-              <div className={classes.errorStyle}>{error.projectIdentifier}</div>
-            </Grid>
-            <Grid item xs={12} style={{paddingTop: '0', paddingBottom: '0'}}>
-              <TextField fullWidth multiline rows={2} rowsMax={4} id="outlined-full-width" label="Project Description" placeholder="Project Description" margin="normal" variant="outlined" inputRef={projectDesc} />
-              <div className={classes.errorStyle}>{error.description}</div>
-            </Grid>
-            <Grid item xs={12} md={6} style={{paddingTop: '0', paddingBottom: '0'}}>
-              <TextField fullWidth id="outlined-full-width" label="Start Date" type="Date" placeholder="Project Name" margin="normal" variant="outlined" InputLabelProps={{ shrink: true }} inputRef={projectStart} />
-            </Grid>
-            <Grid item xs={12} md={6} style={{paddingTop: '0', paddingBottom: '0'}}>
-              <TextField  fullWidth id="outlined-full-width" label="End Date" type="Date" placeholder="Project Name" margin="normal" variant="outlined" InputLabelProps={{ shrink: true }} inputRef={projectEnd} />
-            </Grid>
-            <Grid item xs={12}>
-              <Button fullWidth style={{ marginBottom: "3em" }} variant="contained" color="primary" onClick={handleSubmit}>Submit</Button>
-            </Grid>
-          </Grid>
           </form>
-      </Grid>
+        </Grid>
       </div>
     </Container>
   )
