@@ -100,14 +100,15 @@ export default function UpdateProject(){
   }, [error])
   
   return(
-    <Container container component="main" maxWidth="sm" className={classes.root}>
+    <Container container component="main" maxWidth="sm">
       <CssBaseline />
       <div className={classes.paper}>
-        <Avatar className={classes.avatar}>
-          <UpdateOutlinedIcon />
-        </Avatar>
-        <Typography component="h1" variant="h5"> Update Project</Typography>
-        <form noValidate autoComplete="off" className={classes.formStyle}>
+        <Grid container direction="column" justify="flex-start" alignItems="center" spacing={1} >
+          <Avatar className={classes.avatar}>
+            <UpdateOutlinedIcon />
+          </Avatar>
+          <Typography component="h1" variant="h5"> Update Project</Typography>
+          <form noValidate autoComplete="off" className={classes.formStyle}>
           <Grid container spacing={2}>
               <TextField style={{visibility: "hidden"}} inputRef={id} value={singleProject.id}></TextField>
               <Grid item xs={12} style={{paddingTop: '0', paddingBottom: '0'}}>
@@ -132,6 +133,7 @@ export default function UpdateProject(){
             </Grid>
           </Grid>
         </form>
+        </Grid>
       </div>
   </Container>
   )
