@@ -51,22 +51,9 @@ const useStyles = makeStyles((theme) => ({
 }))
 
 const status = [
-  {
-    value: 'To Do',
-    label: 'Select Status',
-  },
-  {
-    value: 'To Do',
-    label: 'To Do',
-  },
-  {
-    value: 'In Progress',
-    label: 'In Progress',
-  },
-  {
-    value: 'Completed',
-    label: 'Completed',
-  }
+  { value: 'To Do' },
+  { value: 'In Progress' },
+  { value: 'Completed' }
 ];
 
 const priority = [
@@ -174,7 +161,7 @@ export default function Createtask(){
         <TextField select label="Status" className={classes.textDateFieldStyle} onChange={handleStatus} SelectProps={{ native: true }} style={{ margin: 15}} InputLabelProps={{ shrink: true }} helperText="Please select task status">
           {status.map((option, index) => (
             <option key={index} value={option.value}>
-              {option.label}
+              {option.value}
             </option>
           ))}
         </TextField>
