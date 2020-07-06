@@ -9,7 +9,8 @@ import ExpansionPanel from '../components/ExpansionPanel'
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    flexGrow: 1
+    flexGrow: 1,
+    marginTop: '1em'
   },
   title: {
     fontSize: "2em",

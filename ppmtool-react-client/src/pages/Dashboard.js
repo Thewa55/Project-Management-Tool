@@ -44,7 +44,7 @@ function Dashboard(props){
 
   return(
     <div>
-      <Container >  
+      <Container style={{marginTop: "1em"}} >  
         <Grid container direction="row" justify="center" alignItems="center">
           <Typography className={classes.title}>
             Project DashBoard
