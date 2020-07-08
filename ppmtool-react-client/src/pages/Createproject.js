@@ -19,13 +19,6 @@ const styles = theme => ({
     width: '100%',
     marginTop: theme.spacing(1),
   },
-  errorStyle:{
-    color: "red",
-    fontSize: "1em",
-    textAlign: "left",
-    paddingTop: '0',
-    paddingBotttom: '0'
-  },
   avatar: {
     margin: theme.spacing(2),
     backgroundColor: theme.palette.primary.main,
@@ -100,7 +93,7 @@ const Createproject = (props) => {
             <Grid container spacing={2}>
               <TextFieldComp label={"Project Name*"} textRef={projectName} textError = {error.projectName} />
               <TextFieldComp label={"Project ID* (Unique and not updatable)"} textRef={projectId} textError={error.projectIdentifier}/>
-              <TextFieldComp label={"Project Description"} textRef={projectDesc} rows={2} rowsMax={4} multiline={"true"}/>
+              <TextFieldComp label={"Project Description"} textRef={projectDesc} rows={2} rowsMax={4}/>
               <Grid item xs={12} md={6} style={{paddingTop: '0', paddingBottom: '0'}}>
                 <TextField fullWidth id="outlined-full-width" label="Start Date" type="Date"  margin="normal" variant="outlined" InputLabelProps={{ shrink: true }} inputRef={projectStart} />
               </Grid>

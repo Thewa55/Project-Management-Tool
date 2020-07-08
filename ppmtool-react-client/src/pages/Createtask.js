@@ -6,6 +6,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import { useHistory } from 'react-router-dom'
 import { GET_ERRORS} from '../actions/types'
 import axios from 'axios';
+import TextFieldComp from '../components/TextField'
 
 
 const useStyles = makeStyles((theme) => ({
@@ -22,12 +23,6 @@ const useStyles = makeStyles((theme) => ({
   form: {
     width: '100%',
     marginTop: theme.spacing(3),
-  },
-  errorStyle:{
-    color: "red",
-    fontSize: "1em",
-    textAlign: "left",
-    marginLeft: "5%"
   }
 }))
 
@@ -117,6 +112,7 @@ export default function Createtask(){
     history.push(`/projectboard/${id}`);
   }
   
+  console.log(error)
   return(
     <Container container component="main" maxWidth="sm">
       <CssBaseline />
@@ -128,14 +124,8 @@ export default function Createtask(){
           <Typography component="h1" variant="h5">Create Task</Typography>
           <form noValidate autoComplete="off" className={classes.formStyle}>
             <Grid container spacing={2}>
-              <Grid item xs={12} style={{paddingTop: '0', paddingBottom: '0'}}>
-                <TextField fullWidth label="Task Summary*" placeholder="Task Summary" margin="normal" variant="outlined" inputRef={taskSummary} />   
-                <div className={classes.errorStyle}>{error.projectName}</div>
-              </Grid>
-              <Grid item xs={12} style={{paddingTop: '0', paddingBottom: '0'}}>
-                <TextField fullWidth multiline rows={2} rowsMax={4} id="outlined-full-width" label="Task Criteria*"placeholder="Task Criteria" margin="normal" variant="outlined" inputRef={taskCriteria}/>
-                <div className={classes.errorStyle}>{error.description}</div>
-              </Grid>
+              <TextFieldComp label={"Task Summary*"} textRef={taskSummary} textError={error.summary}/>
+              <TextFieldComp label={"Task Criteria"} rows={2} rowsMax={4} textRef={taskCriteria}  />
               <Grid item xs={12} style={{paddingTop: '0', paddingBottom: '0'}}>
                 <TextField fullWidth id="outlined-full-width" label="Due Date" type="Date" placeholder="Due Date" margin="normal" variant="outlined" InputLabelProps={{ shrink: true }} inputRef={dueDate} />
               </Grid>
