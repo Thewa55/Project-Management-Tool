@@ -7,7 +7,6 @@ const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
     width: '80%',
-    // height: '10em',
     marginTop: '1em',
     [theme.breakpoints.down("sm")]:{
       height: '15em',
@@ -30,11 +29,11 @@ const useStyles = makeStyles((theme) => ({
     marginTop: ".5em",
     textAlign: "center",
     [theme.breakpoints.down("md")]:{
-        margin: ".3em"
+      margin: ".3em"
     },
     [theme.breakpoints.down("sm")]:{
-        width: "30%",
-        margin: ".15em"
+      width: "30%",
+      margin: ".15em"
     }
   }
 }));
