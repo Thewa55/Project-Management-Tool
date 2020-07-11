@@ -62,7 +62,6 @@ export default function Navbar() {
     state.security
   ))
 
-  console.log(user)
   const NotAuthNavbar = (
     <Grid item xs={12} sm={5} md={6} lg={8} className={classes.gridStyle}>
       <Box flexGrow={1} className={classes.boxStyle}>
@@ -90,7 +89,8 @@ export default function Navbar() {
     </Grid>  
   );
 
-  if(user.validToken) {
+  // if(user.validToken) {
+  if(jwtToken) {
     NavbarLinks = AuthNavbar
   } else {
     NavbarLinks = NotAuthNavbar

@@ -30,7 +30,6 @@ if(jwtToken){
     payload: decoded
   });
   const currentTime = Date.now() /1000
-  console.log("Time for expiration " + decoded.exp + ". Time now " + currentTime)
   if(decoded.exp < currentTime){
     store.dispatch(logout())
     window.location.href="/"
