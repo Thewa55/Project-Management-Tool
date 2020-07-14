@@ -29,11 +29,11 @@ if(jwtToken){
     type: SET_CURRENT_USER,
     payload: decoded
   });
-  const currentTime = Date.now() /1000
-  if(decoded.exp < currentTime){
-    store.dispatch(logout())
-    window.location.href="/"
-  }
+  // const currentTime = Date.now() /1000
+  // if(decoded.exp < currentTime){
+  //   store.dispatch(logout())
+  //   window.location.href="/"
+  // }
 }
 
 
